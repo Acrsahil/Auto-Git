@@ -1,4 +1,3 @@
-.gitignore
 myenv/
 __pycache__/
 mykey.txt
