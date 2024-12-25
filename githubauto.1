@@ -1,0 +1,82 @@
+.TH Gmkdir 1 "December 2024" "sahildas" "GitHub Management"
+.SH NAME
+gmkdir, delrepo \- Command-line utilities for managing GitHub repositories
+.SH SYNOPSIS
+.B gmkdir
+ <repository-name>
+.B delrepo
+ <repository-name1> <repository-name2> ...
+.SH DESCRIPTION
+These commands are designed for developers or small teams to easily manage GitHub repositories directly from the command line. 
+The tools are simple to use, with no additional configuration required, and provide clear error messages when necessary.
+
+.TP
+.B gmkdir <repository-name>
+Creates a new GitHub repository with the specified name.
+
+Example:
+.nf
+  gmkdir my-new-repo
+.fi
+This will:
+  \- Authenticate with GitHub using the token from `mykey.txt`.
+  \- Create the specified repository on GitHub.
+  \- Provide an error message if the repository already exists or if there are permission issues.
+
+.TP
+.B delrepo <repository-name1> <repository-name2> ...
+Deletes one or more GitHub repositories.
+
+Example:
+.nf
+  delrepo old-repo1 old-repo2
+.fi
+This will:
+  \- Authenticate with GitHub using the token from `mykey.txt`.
+  \- Attempt to delete each specified repository.
+  \- Provide error messages for repositories not found or if permission is denied.
+
+.SH FILES
+.TP
+path.txt
+A text file containing the local base directory where repositories will be created.
+.TP
+mykey.txt
+A text file containing your GitHub personal access token for API authentication.
+
+.SH REQUIREMENTS
+.TP
+\- Python 3.x
+.TP
+\- PyGithub library
+.TP
+\- Git installed locally
+.TP
+\- bash or zsh shell
+
+.SH EXAMPLES
+.TP
+1. Create a new repository named "test-repo":
+.nf
+  gmkdir test-repo
+.fi
+.TP
+2. Delete repositories named "old-repo1" and "demo-repo":
+.nf
+  delrepo old-repo1 demo-repo
+.fi
+
+.SH EXIT STATUS
+The scripts return the following exit codes:
+.TP
+0  Successful execution
+.TP
+1  Missing arguments or required files
+.TP
+2  Authentication error or unexpected failure
+
+.SH AUTHORS
+Created by sahildas.
+
+.SH BUGS
+Please report any issues or suggestions to the project repository.

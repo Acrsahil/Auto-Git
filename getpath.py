@@ -9,7 +9,6 @@ def getpath():
     with open(f"{maindir}/path.txt", "w") as file:
         file.write(path)
 
-
 def prints():
     return path
 

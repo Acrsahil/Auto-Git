@@ -14,6 +14,7 @@ print(f"Repository Name: {name}")
 
 # Get the main directory of the script
 maindir = os.path.dirname(os.path.abspath(__file__))
+
 maindir = maindir.strip()
 
 # Read the path from 'path.txt'
