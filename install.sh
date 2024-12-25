@@ -6,8 +6,13 @@ ALIAS_NAME_DELETE="delrepo"
 CURRENT_PATH=$(dirname "$(realpath "$0")")
 VENV_DIR="$CURRENT_PATH/myenv"
 KEY_FILE="$CURRENT_PATH/mykey.txt"
-MAN_PAGE_FILE="$CURRENT_PATH/githubauto.1"
-MAN_DIR="/usr/local/share/man/man1"
+
+# Dynamically find or create the appropriate man directory
+MAN_DIR=$(manpath 2>/dev/null | awk -F: '{print $1}')/man1
+if [ ! -d "$MAN_DIR" ]; then
+  echo "Man directory $MAN_DIR not found. Creating it..."
+  sudo mkdir -p "$MAN_DIR"
+fi
 
 # Function to set up the virtual environment
 setup_virtualenv() {
@@ -91,7 +96,6 @@ setup_man_page() {
     local man_page_file="$CURRENT_PATH/$cmd.1"
     local man_page_dest="$MAN_DIR/$cmd.1"
 
-    # Check if the man page already exists in the man directory
     if [ -f "$man_page_dest" ]; then
       echo "Man page for '$cmd' already exists. Skipping setup."
     else
@@ -113,7 +117,7 @@ main() {
   setup_key_file
   setup_shell_config
   setup_man_page
-  echo "All the Setup is done !"
+  echo "All the Setup is done!"
 }
 
 # Run the main function

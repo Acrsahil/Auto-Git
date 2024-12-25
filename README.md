@@ -17,7 +17,7 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories dir
 
 ## **Installation** 🛠️
 
-Follow these steps to install githubauto:
+Follow these steps to install Auto-Git:
 
 ### **Step 1: Clone the Repository**
 
@@ -37,7 +37,7 @@ Make sure you have python3 and pip installed
 
 ## Setup Instructions ⚙️
 
-Before using githubauto, ensure that you have configured your GitHub access token for authentication.
+Before using Git-Auto, ensure that you have configured your GitHub access token for authentication.
 Step 1: Generate GitHub Personal Access Token
 
     Visit your GitHub Personal Access Tokens page.
