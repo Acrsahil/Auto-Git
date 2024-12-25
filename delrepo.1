@@ -1,0 +1,46 @@
+.TH DELREPO 1 "December 2024" "sahildas" "GitHub Management"
+.SH NAME
+delrepo \- Command-line utility for deleting GitHub repositories
+.SH SYNOPSIS
+.B delrepo <repository-name1> <repository-name2> ...
+.SH DESCRIPTION
+Deletes one or more GitHub repositories.
+
+This command:
+  \- Authenticates with GitHub using the token from `mykey.txt`.
+  \- Attempts to delete each specified repository.
+  \- Provides error messages for repositories not found or if permission is denied.
+
+.SH FILES
+.TP
+mykey.txt
+A text file containing your GitHub personal access token for API authentication.
+
+.SH REQUIREMENTS
+.TP
+\- Python 3.x
+.TP
+\- PyGithub library
+.TP
+\- bash or zsh shell
+
+.SH EXAMPLES
+Delete repositories named "old-repo1" and "demo-repo":
+.nf
+  delrepo old-repo1 demo-repo
+.fi
+
+.SH EXIT STATUS
+The script returns the following exit codes:
+.TP
+0  Successful execution
+.TP
+1  Missing arguments or required files
+.TP
+2  Authentication error or unexpected failure
+
+.SH AUTHORS
+Created by sahildas.
+
+.SH BUGS
+Please report any issues or suggestions to the project repository.

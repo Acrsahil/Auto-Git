@@ -85,18 +85,26 @@ setup_shell_config() {
 
 # Function to set up the man page
 setup_man_page() {
-  # Check if the man page already exists in the man directory
-  if [ -f "$MAN_DIR/githubauto.1" ]; then
-    echo "Man page already exists. Skipping setup."
-  else
-    if [ -f "$MAN_PAGE_FILE" ]; then
-      echo "Setting up the man page..."
-      sudo cp "$MAN_PAGE_FILE" "$MAN_DIR/"
-      sudo mandb
+  local commands=("gmkdir" "delrepo")
+  
+  for cmd in "${commands[@]}"; do
+    local man_page_file="$CURRENT_PATH/$cmd.1"
+    local man_page_dest="$MAN_DIR/$cmd.1"
+
+    # Check if the man page already exists in the man directory
+    if [ -f "$man_page_dest" ]; then
+      echo "Man page for '$cmd' already exists. Skipping setup."
     else
-      echo "Man page file 'githubauto.1' not found. Skipping."
+      if [ -f "$man_page_file" ]; then
+        echo "Setting up the man page for '$cmd'..."
+        sudo cp "$man_page_file" "$MAN_DIR/"
+        sudo mandb
+        echo "Man page for '$cmd' is set up."
+      else
+        echo "Man page file '$cmd.1' not found. Skipping."
+      fi
     fi
-  fi
+  done
 }
 
 # Main function to orchestrate the setup

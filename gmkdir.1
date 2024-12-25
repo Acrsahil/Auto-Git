@@ -1,0 +1,51 @@
+.TH GMKDIR 1 "December 2024" "sahildas" "GitHub Management"
+.SH NAME
+gmkdir \- Command-line utility for creating GitHub repositories
+.SH SYNOPSIS
+.B gmkdir <repository-name>
+.SH DESCRIPTION
+Creates a new GitHub repository with the specified name.
+
+This command:
+  \- Authenticates with GitHub using the token from `mykey.txt`.
+  \- Creates the specified repository on GitHub.
+  \- Provides an error message if the repository already exists or if there are permission issues.
+
+.SH FILES
+.TP
+path.txt
+A text file containing the local base directory where repositories will be created.
+.TP
+mykey.txt
+A text file containing your GitHub personal access token for API authentication.
+
+.SH REQUIREMENTS
+.TP
+\- Python 3.x
+.TP
+\- PyGithub library
+.TP
+\- Git installed locally
+.TP
+\- bash or zsh shell
+
+.SH EXAMPLES
+Create a new repository named "test-repo":
+.nf
+  gmkdir test-repo
+.fi
+
+.SH EXIT STATUS
+The script returns the following exit codes:
+.TP
+0  Successful execution
+.TP
+1  Missing arguments or required files
+.TP
+2  Authentication error or unexpected failure
+
+.SH AUTHORS
+Created by sahildas.
+
+.SH BUGS
+Please report any issues or suggestions to the project repository.
