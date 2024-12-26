@@ -13,7 +13,6 @@ print(f"Repository Name: {name}")
 
 # Get the main directory of the script
 maindir = os.path.dirname(os.path.abspath(__file__))
-
 maindir = maindir.strip()
 
 # Read the path from 'path.txt'
@@ -29,8 +28,7 @@ with open(f"{maindir}/mykey.txt", "r") as file:
     key = file.read().strip()
 
 # Authenticate with GitHub
-auth = Auth.Token(key)
-g = Github(auth=auth)
+g = Github(key)  # Authenticate using the access token directly
 
 # Create the repository on GitHub
 user = g.get_user()
@@ -42,8 +40,3 @@ os.system(
 )
 
 print(f"Repository '{name}' created successfully on GitHub and initialized locally!")
-
-
-
-
-
