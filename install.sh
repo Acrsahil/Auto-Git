@@ -14,38 +14,84 @@ if [ ! -d "$MAN_DIR" ]; then
   sudo mkdir -p "$MAN_DIR"
 fi
 
+# Function to detect the package manager
+detect_package_manager() {
+  if command -v apt &>/dev/null; then
+    echo "apt"
+  elif command -v dnf &>/dev/null; then
+    echo "dnf"
+  elif command -v yum &>/dev/null; then
+    echo "yum"
+  elif command -v pacman &>/dev/null; then
+    echo "pacman"
+  elif command -v zypper &>/dev/null; then
+    echo "zypper"
+  else
+    echo "unknown"
+  fi
+}
+
+# Function to install missing dependencies
+install_missing_dependencies() {
+  package_manager=$(detect_package_manager)
+
+  case "$package_manager" in
+  apt)
+    echo "Using apt to install dependencies..."
+    sudo apt update && sudo apt install python3-venv -y || {
+      echo "Failed to install python3-venv with apt.";
+      exit 1;
+    }
+    ;;
+  dnf)
+    echo "Using dnf to install dependencies..."
+    sudo dnf install python3-venv -y || {
+      echo "Failed to install python3-venv with dnf.";
+      exit 1;
+    }
+    ;;
+  yum)
+    echo "Using yum to install dependencies..."
+    sudo yum install python3-venv -y || {
+      echo "Failed to install python3-venv with yum.";
+      exit 1;
+    }
+    ;;
+  pacman)
+    echo "Using pacman to install dependencies..."
+    sudo pacman -Syu --noconfirm python || {
+      echo "Failed to install Python dependencies with pacman.";
+      exit 1;
+    }
+    ;;
+  zypper)
+    echo "Using zypper to install dependencies..."
+    sudo zypper install -y python3-venv || {
+      echo "Failed to install python3-venv with zypper.";
+      exit 1;
+    }
+    ;;
+  *)
+    echo "Unsupported package manager. Please install 'python3-venv' manually."
+    exit 1
+    ;;
+  esac
+}
+
 # Function to set up the virtual environment
 setup_virtualenv() {
-  # Check if Python3 is installed
-  if ! command -v python3 &>/dev/null; then
-    echo "Python3 is not installed. Please install it first."
-    exit 1
-  fi
-
-  # Check if pip is installed
-  if ! command -v pip3 &>/dev/null; then
-    echo "pip is not installed. Installing pip..."
-    sudo apt update
-    sudo apt install python3-pip -y
-  fi
-
-  # Check if the venv module is available
-  if ! python3 -m venv --help &>/dev/null; then
-    echo "Python 'venv' module is not available. Installing it..."
-    sudo apt update
-    sudo apt install python3-venv -y
-  fi
+  install_missing_dependencies
 
   # Create virtual environment if it doesn't exist
   if [ ! -d "$VENV_DIR" ]; then
     echo "Virtual environment 'myenv' not found. Creating it..."
-    python3 -m venv "$VENV_DIR"
+    python3 -m venv "$VENV_DIR" || { echo "Failed to create virtual environment."; exit 1; }
     echo "Virtual environment 'myenv' created."
 
     echo "Installing required packages..."
-    source "$VENV_DIR/bin/activate"
-    pip install PyGithub
-    deactivate
+    source "$VENV_DIR/bin/activate" || { echo "Failed to activate virtual environment."; exit 1; }
+    pip install PyGithub || { echo "Failed to install PyGithub."; deactivate; exit 1; }
+    deactivate || { echo "Failed to deactivate virtual environment."; exit 1; }
     echo "PyGithub installed in 'myenv'."
   else
     echo "Virtual environment 'myenv' already exists."
@@ -122,8 +168,8 @@ setup_man_page() {
     else
       if [ -f "$man_page_file" ]; then
         echo "Setting up the man page for '$cmd'..."
-        sudo cp "$man_page_file" "$MAN_DIR/"
-        sudo mandb
+        sudo cp "$man_page_file" "$MAN_DIR/" || { echo "Failed to copy man page for '$cmd'."; continue; }
+        sudo mandb || { echo "Failed to update man database."; continue; }
         echo "Man page for '$cmd' is set up."
       else
         echo "Man page file '$cmd.1' not found. Skipping."
