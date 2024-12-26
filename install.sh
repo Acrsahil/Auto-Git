@@ -66,10 +66,15 @@ install_missing_dependencies() {
     ;;
   zypper)
     echo "Using zypper to install dependencies..."
-    sudo zypper install -y python3-venv || {
-      echo "Failed to install python3-venv with zypper.";
+    sudo zypper install -y python3-pip || {
+      echo "Failed to install python3-pip with zypper.";
       exit 1;
     }
+    # Install virtualenv if python3-venv is unavailable
+    if ! sudo zypper install -y python3-venv; then
+      echo "python3-venv not found, installing virtualenv with pip..."
+      sudo pip3 install virtualenv || { echo "Failed to install virtualenv."; exit 1; }
+    fi
     ;;
   *)
     echo "Unsupported package manager. Please install 'python3-venv' manually."
