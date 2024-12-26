@@ -2,7 +2,6 @@ import os
 import sys
 import subprocess
 from github import Github
-from github import Auth
 
 # Check if repository name is provided as a command-line argument
 if len(sys.argv) < 2:
@@ -43,3 +42,8 @@ os.system(
 )
 
 print(f"Repository '{name}' created successfully on GitHub and initialized locally!")
+
+
+
+
+
