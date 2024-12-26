@@ -16,6 +16,27 @@ fi
 
 # Function to set up the virtual environment
 setup_virtualenv() {
+  # Check if Python3 is installed
+  if ! command -v python3 &>/dev/null; then
+    echo "Python3 is not installed. Please install it first."
+    exit 1
+  fi
+
+  # Check if pip is installed
+  if ! command -v pip3 &>/dev/null; then
+    echo "pip is not installed. Installing pip..."
+    sudo apt update
+    sudo apt install python3-pip -y
+  fi
+
+  # Check if the venv module is available
+  if ! python3 -m venv --help &>/dev/null; then
+    echo "Python 'venv' module is not available. Installing it..."
+    sudo apt update
+    sudo apt install python3-venv -y
+  fi
+
+  # Create virtual environment if it doesn't exist
   if [ ! -d "$VENV_DIR" ]; then
     echo "Virtual environment 'myenv' not found. Creating it..."
     python3 -m venv "$VENV_DIR"
