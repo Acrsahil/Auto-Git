@@ -61,7 +61,7 @@ This will create a new repository named new-awesome-project.
 
 Delete Repositories:🗑️
 
-    delrepo repo1 repo2
+    grmdir repo1 repo2
 
    This will delete the repositories repo1 and repo2 from your GitHub account.
 
@@ -87,5 +87,3 @@ Delete Repositories:🗑️
 If you encounter any issues or have suggestions for improvements, please open an issue on the GitHub Repository. We'd love to hear from you! 😄
 
 Happy automating! 🚀
-
-now write little about the project
