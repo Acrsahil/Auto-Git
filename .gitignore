@@ -1,5 +1,6 @@
 myenv/
 __pycache__/
 mykey.txt
+alias.sh
 
 
