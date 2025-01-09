@@ -2,7 +2,7 @@
 
 CURRENT_SHELL=$(basename $SHELL)
 ALIAS_NAME_CREATE="gmkdir"
-ALIAS_NAME_GRMDIR="grmdir"  # Changed from delrepo to grmdir
+ALIAS_NAME_GRMDIR="grmdir"  # Alias for removing repositories
 CURRENT_PATH=$(dirname "$(realpath "$0")")
 VENV_DIR="$CURRENT_PATH/myenv"
 KEY_FILE="$CURRENT_PATH/mykey.txt"
@@ -175,7 +175,7 @@ add_source_to_shell_config() {
 # Function to set up the man page
 setup_man_page() {
   local commands=("gmkdir" "grmdir")  # Added grmdir here
-  
+
   for cmd in "${commands[@]}"; do
     local man_page_file="$CURRENT_PATH/$cmd.1"
     local man_page_dest="$MAN_DIR/$cmd.1"
