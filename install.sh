@@ -2,12 +2,12 @@
 
 CURRENT_SHELL=$(basename $SHELL)
 ALIAS_NAME_CREATE="gmkdir"
-ALIAS_NAME_GRMDIR="grmdir"  # Alias for removing repositories
+ALIAS_NAME_GRMDIR="grmdir"  # Changed from delrepo to grmdir
 CURRENT_PATH=$(dirname "$(realpath "$0")")
 VENV_DIR="$CURRENT_PATH/myenv"
 KEY_FILE="$CURRENT_PATH/mykey.txt"
 ALIAS_FILE="$CURRENT_PATH/alias.sh"  # Path for alias file
-SHELL_CONFIG_FILE=""  # To be dynamically determined
+SHELL_CONFIG_FILES=("$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.config/fish/config.fish")
 
 # Dynamically find or create the appropriate man directory
 MAN_DIR=$(manpath 2>/dev/null | awk -F: '{print $1}')/man1
@@ -131,39 +131,22 @@ add_alias_to_file() {
   fi
 }
 
-# Function to detect which shell is being used and determine the correct config file
-detect_shell_config_file() {
-  case "$CURRENT_SHELL" in
-    bash)
-      SHELL_CONFIG_FILE="$HOME/.bashrc"
-      ;;
-    zsh)
-      SHELL_CONFIG_FILE="$HOME/.zshrc"
-      ;;
-    fish)
-      SHELL_CONFIG_FILE="$HOME/.config/fish/config.fish"
-      ;;
-    *)
-      echo "Unsupported shell: $CURRENT_SHELL"
-      exit 1
-      ;;
-  esac
+# Function to set up the alias for creating repositories
+setup_create_alias() {
+  local create_command="source $VENV_DIR/bin/activate && pwd | python $CURRENT_PATH/getpath.py && python $CURRENT_PATH/main.py"
+  add_alias_to_file "$ALIAS_NAME_CREATE" "$create_command"
 }
 
-# Function to add the source command to the shell config file
-add_source_to_shell_config() {
-  if ! grep -q "source $ALIAS_FILE" "$SHELL_CONFIG_FILE"; then
-    echo "source $ALIAS_FILE" >> "$SHELL_CONFIG_FILE"
-    echo "Added 'source $ALIAS_FILE' to $SHELL_CONFIG_FILE"
-  else
-    echo "'source $ALIAS_FILE' is already in $SHELL_CONFIG_FILE"
-  fi
+# Function to set up the alias for removing repositories (changed from delrepo to grmdir)
+setup_grmdir_alias() {
+  local delete_command="source $VENV_DIR/bin/activate && python $CURRENT_PATH/deleterepo.py"
+  add_alias_to_file "$ALIAS_NAME_GRMDIR" "$delete_command"
 }
 
 # Function to set up the man page
 setup_man_page() {
   local commands=("gmkdir" "grmdir")  # Added grmdir here
-
+  
   for cmd in "${commands[@]}"; do
     local man_page_file="$CURRENT_PATH/$cmd.1"
     local man_page_dest="$MAN_DIR/$cmd.1"
@@ -183,42 +166,30 @@ setup_man_page() {
   done
 }
 
-# Function to ensure alias.sh exists, has execute permissions, and contains alias content
-ensure_alias_file() {
-  # Check if alias.sh exists
-  if [ ! -f "$ALIAS_FILE" ]; then
-    echo "'$ALIAS_FILE' not found. Creating it..."
-    touch "$ALIAS_FILE"  # Create the alias file if it doesn't exist
-
-    # Give execute permission to the file
-    chmod +x "$ALIAS_FILE"
-    echo "Permissions '+x' added to '$ALIAS_FILE'."
-  fi
-
-  # Ensure the alias file contains the necessary alias definitions
-  if ! grep -q "alias $ALIAS_NAME_CREATE=" "$ALIAS_FILE"; then
-    echo "Adding alias for $ALIAS_NAME_CREATE..."
-    local create_command="source $VENV_DIR/bin/activate && pwd | python $CURRENT_PATH/getpath.py && python $CURRENT_PATH/main.py"
-    echo "alias $ALIAS_NAME_CREATE='$create_command'" >> "$ALIAS_FILE"
-  fi
-
-  if ! grep -q "alias $ALIAS_NAME_GRMDIR=" "$ALIAS_FILE"; then
-    echo "Adding alias for $ALIAS_NAME_GRMDIR..."
-    local delete_command="source $VENV_DIR/bin/activate && python $CURRENT_PATH/deleterepo.py"
-    echo "alias $ALIAS_NAME_GRMDIR='$delete_command'" >> "$ALIAS_FILE"
-  fi
-
-  echo "Alias definitions added to $ALIAS_FILE."
+# Function to add the source command to the shell config files
+add_source_to_shell_configs() {
+  for shell_config in "${SHELL_CONFIG_FILES[@]}"; do
+    if [ -f "$shell_config" ]; then
+      if ! grep -q "source $ALIAS_FILE" "$shell_config"; then
+        echo "source $ALIAS_FILE" >> "$shell_config"
+        echo "Added 'source $ALIAS_FILE' to $shell_config"
+      else
+        echo "'source $ALIAS_FILE' is already in $shell_config"
+      fi
+    else
+      echo "Shell config file '$shell_config' not found. Skipping."
+    fi
+  done
 }
 
 # Main function to orchestrate the setup
 main() {
-  detect_shell_config_file  # Detect the shell config file dynamically
   setup_virtualenv
   setup_key_file
-  ensure_alias_file  # Ensure alias file exists and is configured
+  setup_create_alias
+  setup_grmdir_alias
   setup_man_page
-  add_source_to_shell_config  # Add the source command to the shell config file
+  add_source_to_shell_configs  # Add the source command to all possible shell config files
   echo "All the Setup is done!"
 }
 
