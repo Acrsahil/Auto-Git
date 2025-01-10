@@ -1,6 +1,8 @@
 # **Auto-Git** 🚀
-Auto-Git is a set of command-line utilities for managing GitHub repositories directly from the terminal. It simplifies common GitHub tasks such as creating and deleting repositories.
 
+Auto-Git is a set of command-line utilities for managing GitHub repositories and their contents directly from the terminal. It simplifies common GitHub tasks such as creating, deleting, and listing repositories, as well as listing the contents of those repositories.
+
+![autogit](https://github.com/user-attachments/assets/457b361d-d48c-4d22-99a0-78175b36a820)
 
 ## **Table of Contents** 📚
 
@@ -28,12 +30,9 @@ git clone https://github.com/Acrsahil/Auto-Git.git
 cd Auto-Git
 ```
 
-
 ## Step 2: Install Dependencies
 
 Make sure you have python3 and pip installed
-
-
 
 ## Setup Instructions ⚙️
 
@@ -46,24 +45,36 @@ Step 1: Generate GitHub Personal Access Token
     Save the token securely.
 
 ## Step 3: Run to install
+
     ./install.py
 
 It will ask you to input your GitHub username and access token.
 
 ## Examples
 
-
-Create a Repository:📂
+#### Create a Repository:📂
 
     gmkdir new-awesome-project
 
 This will create a new repository named new-awesome-project.
 
-Delete Repositories:🗑️
+#### Delete Repositories:🗑️
 
     grmdir repo1 repo2
 
-   This will delete the repositories repo1 and repo2 from your GitHub account.
+This will delete the repositories repo1 and repo2 from your GitHub account.
+
+#### List Repositories:📜
+
+    gls
+
+This will list all the repositories in your GitHub account.
+
+#### List Repositories Contents:📁
+
+    gls repo1 repo2
+
+This will list all the contents inside your repo1 and repo2.
 
 ## Requirements 📌
 
@@ -80,7 +91,7 @@ Delete Repositories:🗑️
 
 ## Authors 👨‍💻👩‍💻
 
-   Sahil Das: Creator and Lead Developer 💻
+Sahil Das: Creator and Lead Developer 💻
 
 ## Bugs and Feedback 🐞
 
