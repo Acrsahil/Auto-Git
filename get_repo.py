@@ -69,15 +69,15 @@ def ls_repos():
         myrepos = g.get_user().get_repos()
         print()
         print(
-            f"{GREEN}*==============================================================*{RESET}"
+            f"{BLUE}*==============================================================*{RESET}"
         )
-        print(f"{GREEN} Listing repos of {user.login}{RESET}")
+        print(f"{BLUE} Listing repos of {user.login}{RESET}")
         print(
-            f"{GREEN}*--------------------------------------------------------------*{RESET}"
+            f"{BLUE}*--------------------------------------------------------------*{RESET}"
         )
         print()
         for repo in myrepos:
-            print(f"{GREEN}     {repo.name}{RESET}")
+            print(f"{BLUE}     {repo.name}{RESET}")
     except Exception as e:
         print(f"{YELLOW}Error: Unable to list repositories - {e}{RESET}")
 
