@@ -62,6 +62,7 @@ def ls_inside_repo(lsts):
             print(
                 f"{YELLOW}*--------------------------------------------------------------*{RESET}"
             )
+    print()
 
 
 def ls_repos():
@@ -78,6 +79,7 @@ def ls_repos():
         print()
         for repo in myrepos:
             print(f"{BLUE}     {repo.name}{RESET}")
+        print()
     except Exception as e:
         print(f"{YELLOW}Error: Unable to list repositories - {e}{RESET}")
 
