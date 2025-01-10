@@ -129,6 +129,12 @@ Below is a step-by-step guide to help you get started with Auto-Git:
 ### **Step 12: Summary**
 ![Step 12](guide/12.png)    
 
+### **Step 13: Summary**
+![Step 13](guide/13.png) 
+
+### **Step 14: Summary**
+![Step 14](guide/14.png) 
+
 ## Authors 👨‍💻👩‍💻
 
 Sahil Das: Creator and Lead Developer 💻
