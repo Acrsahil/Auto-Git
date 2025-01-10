@@ -6,6 +6,10 @@ from github.GithubException import UnknownObjectException
 
 lsts = []
 
+reponaming = " Listing contents of   "
+countrepolen = " Listing repos of  "
+
+
 maindir = os.path.dirname(os.path.abspath(__file__))
 
 # Read the token from the file
@@ -33,13 +37,10 @@ def ls_inside_repo(lsts):
     for con in lsts:
         try:
             mycontent = g.get_user().get_repo(con)
-            print(
-                f"\n{BLUE}*==============================================================*{RESET}"
-            )
-            print(f"{BLUE} Listing contents of   {con}:{RESET}")
-            print(
-                f"{BLUE}*--------------------------------------------------------------*{RESET}"
-            )
+            print()
+            print(f"{BLUE}*{'='*(len(reponaming)+len(con)+1)}*{RESET}")
+            print(f"{BLUE}| Listing contents of   {con} |{RESET}")
+            print(f"{BLUE}*{'-'*(len(reponaming)+len(con)+1)}*{RESET}")
             print()
             contents = mycontent.get_contents("")
             while contents:
@@ -62,6 +63,7 @@ def ls_inside_repo(lsts):
             print(
                 f"{YELLOW}*--------------------------------------------------------------*{RESET}"
             )
+
     print()
 
 
@@ -69,13 +71,9 @@ def ls_repos():
     try:
         myrepos = g.get_user().get_repos()
         print()
-        print(
-            f"{BLUE}*==============================================================*{RESET}"
-        )
-        print(f"{BLUE} Listing repos of  {user.login}{RESET}")
-        print(
-            f"{BLUE}*--------------------------------------------------------------*{RESET}"
-        )
+        print(f"{BLUE}*{'='*(len(countrepolen)+len(user.login)+1)}*{RESET}")
+        print(f"|{BLUE} Listing repos of  {user.login} |{RESET}")
+        print(f"{BLUE}*{'-'*(len(countrepolen)+len(user.login)+1)}*{RESET}")
         print()
         for repo in myrepos:
             print(f"{BLUE}     {repo.name}{RESET}")
