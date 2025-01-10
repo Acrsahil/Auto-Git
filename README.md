@@ -89,6 +89,46 @@ This will list all the contents inside your repo1 and repo2.
     2: Authentication failure 🔐
     3: Invalid repository name ⚠️
 
+## **Guide** 📚
+
+Below is a step-by-step guide to help you get started with Auto-Git:
+
+### **Step 1: Overview**
+![Step 1](guide/1.png)
+
+### **Step 2: Installation**
+![Step 2](guide/2.png)
+
+### **Step 3: Setup**
+![Step 3](guide/3.png)
+
+### **Step 4: Using the Create Repository Command**
+![Step 4](guide/4.png)
+
+### **Step 5: Using the Delete Repository Command**
+![Step 5](guide/5.png)
+
+### **Step 6: Listing Repositories**
+![Step 6](guide/6.png)
+
+### **Step 7: Listing Repository Contents**
+![Step 7](guide/7.png)
+
+### **Step 8: Checking Requirements**
+![Step 8](guide/8.png)
+
+### **Step 9: Resolving Errors**
+![Step 9](guide/9.png)
+
+### **Step 10: Exiting Auto-Git**
+![Step 10](guide/10.png)
+
+### **Step 11: Advanced Features**
+![Step 11](guide/11.png)
+
+### **Step 12: Summary**
+![Step 12](guide/12.png)    
+
 ## Authors 👨‍💻👩‍💻
 
 Sahil Das: Creator and Lead Developer 💻
