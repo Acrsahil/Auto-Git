@@ -1,0 +1,57 @@
+.TH GLS 1 "January 2025" "sahildas" "GitHub Management"
+.SH NAME
+gls \- Command-line utility for listing GitHub repositories and their contents
+.SH SYNOPSIS
+.B gls [repository-name1 repository-name2 ...]
+.SH DESCRIPTION
+The script provides two primary functionalities:
+.IP
+1. If no arguments are provided, it lists all repositories in the authenticated user's GitHub account.
+.IP
+2. If repository names are provided as arguments, it lists the contents (files and directories) of those repositories.
+
+This command:
+.IP
+\- Authenticates with GitHub using a personal access token from `mykey.txt`.
+.IP
+\- Allows you to explore repositories and their contents directly from the terminal.
+
+.SH FILES
+.TP
+mykey.txt
+A text file containing your GitHub personal access token for API authentication.
+
+.SH REQUIREMENTS
+.TP
+\- Python 3.x
+.TP
+\- PyGithub library
+.TP
+\- bash or zsh shell
+
+.SH EXAMPLES
+List all repositories for the authenticated user:
+.nf
+  gls
+.fi
+
+List contents of specific repositories "repo1" and "repo2":
+.nf
+  gls repo1 repo2
+.fi
+
+.SH EXIT STATUS
+The script returns the following exit codes:
+.TP
+0  Successful execution
+.TP
+1  Missing token file or invalid arguments
+.TP
+2  Authentication error or unexpected failure
+
+.SH AUTHORS
+Created by sahildas.
+
+.SH BUGS
+Please report any issues or suggestions to the project repository.
+
