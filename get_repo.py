@@ -2,13 +2,13 @@ import os
 import sys
 from github import Github
 from github import Auth
-from github.GithubException import UnknownObjectException
+from github.GithubException import UnknownObjectException, GithubException
 
 lsts = []
 
 reponaming = " Listing contents of   "
 countrepolen = " Listing repos of  "
-
+warninglen = " Warning!: Repository not found! "
 
 maindir = os.path.dirname(os.path.abspath(__file__))
 
@@ -43,6 +43,9 @@ def ls_inside_repo(lsts):
             print(f"{BLUE}*{'-'*(len(reponaming)+len(con)+1)}*{RESET}")
             print()
             contents = mycontent.get_contents("")
+            if not contents:
+                print(f"{YELLOW} Warning: Repository '{con}' is empty.{RESET}")
+                print(f"{YELLOW}*{'-'*(len(warninglen)+len(con))}*{RESET}")
             while contents:
                 file_content = contents.pop(0)
                 if file_content.type == "dir":
@@ -50,19 +53,22 @@ def ls_inside_repo(lsts):
                 else:
                     print(f"{GREEN}      {file_content.path} {RESET}")
         except UnknownObjectException:
-            print(
-                f"\n{YELLOW} Warning!: Repository '{con}' not found in your GitHub account.{RESET}"
-            )
-            print(
-                f"{YELLOW}*--------------------------------------------------------------*{RESET}"
-            )
+            print(f"\n{YELLOW} Warning!: Repository '{con}' not found! {RESET}")
+            print(f"{YELLOW}*{'-'*(len(warninglen)+len(con)+1)}*{RESET}")
+        except GithubException as e:
+            if e.status == 404 and "empty" in e.data.get("message", "").lower():
+                print(f"\n{YELLOW} Warning!: Repository '{con}' is empty!{RESET}")
+                print(f"{YELLOW}*{'-'*(len(warninglen)+len(con))}*{RESET}")
+            else:
+                print(
+                    f"\n{YELLOW} Warning!: An unexpected error occurred while accessing '{con}' - {e}{RESET}"
+                )
+                print(f"{YELLOW}*{'-'*(len(warninglen)+len(con)+1)}*{RESET}")
         except Exception as e:
             print(
                 f"\n{YELLOW} Warning!: An unexpected error occurred while accessing '{con}' - {e}{RESET}"
             )
-            print(
-                f"{YELLOW}*--------------------------------------------------------------*{RESET}"
-            )
+            print(f"{YELLOW}*{'-'*(len(warninglen)+len(con)+1)}*{RESET}")
 
     print()
 
