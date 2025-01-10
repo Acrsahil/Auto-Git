@@ -34,11 +34,11 @@ def ls_inside_repo(lsts):
         try:
             mycontent = g.get_user().get_repo(con)
             print(
-                f"\n{GREEN}*==============================================================*{RESET}"
+                f"\n{BLUE}*==============================================================*{RESET}"
             )
-            print(f"{GREEN} Listing contents of '{con}' repo:{RESET}")
+            print(f"{BLUE} Listing contents of   {con}:{RESET}")
             print(
-                f"{GREEN}*--------------------------------------------------------------*{RESET}"
+                f"{BLUE}*--------------------------------------------------------------*{RESET}"
             )
             print()
             contents = mycontent.get_contents("")
@@ -72,7 +72,7 @@ def ls_repos():
         print(
             f"{BLUE}*==============================================================*{RESET}"
         )
-        print(f"{BLUE} Listing repos of {user.login}{RESET}")
+        print(f"{BLUE} Listing repos of  {user.login}{RESET}")
         print(
             f"{BLUE}*--------------------------------------------------------------*{RESET}"
         )
