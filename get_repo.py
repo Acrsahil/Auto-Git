@@ -2,6 +2,7 @@ import os
 import sys
 from github import Github
 from github import Auth
+from github.GithubException import UnknownObjectException
 
 lsts = []
 
@@ -23,34 +24,37 @@ user = g.get_user()
 def ls_inside_repo(lsts):
     for con in lsts:
         print()
-        print(f"Listing contents of {con} repo:")
+        print(f"Listing contents of '{con}' repo:")
         print()
-        mycontent = g.get_user().get_repo(con)
-        contents = mycontent.get_contents("")
-        while contents:
-            file_content = contents.pop(0)
-            if file_content.type == "dir":
-                print(f"{file_content.path}/")
-            else:
-                print(file_content.path)
+        try:
+            mycontent = g.get_user().get_repo(con)
+            contents = mycontent.get_contents("")
+            while contents:
+                file_content = contents.pop(0)
+                if file_content.type == "dir":
+                    print(f"{file_content.path}/")
+                else:
+                    print(file_content.path)
+        except UnknownObjectException:
+            print(f"Error: Repository '{con}' not found in your GitHub account.")
+        except Exception as e:
+            print(f"Error: An unexpected error occurred while accessing '{con}' - {e}")
 
 
 def ls_repos():
-    myrepos = g.get_user().get_repos()
-    print()
-    print(f"Listing repo of {user.login}")
-    print()
-    for repo in myrepos:
-        print(repo.name)
+    try:
+        myrepos = g.get_user().get_repos()
+        print()
+        print(f"Listing repos of {user.login}")
+        print()
+        for repo in myrepos:
+            print(repo.name)
+    except Exception as e:
+        print(f"Error: Unable to list repositories - {e}")
 
 
-# Get the directory of the current script
-
-# Authenticate with GitHub
-
-
+# Main logic
 lsts = sys.argv[1:]
-
 
 if len(lsts) > 0:
     ls_inside_repo(lsts)
