@@ -1,4 +1,10 @@
 # Auto-Git 🚀
+<p align="center">
+  <img src="https://img.shields.io/github/contributors/Nischal-Acharya/repo-name?style=flat-square" />
+  <img src="https://img.shields.io/github/stars/Nischal-Acharya/repo-name?style=flat-square" />
+  <img src="https://img.shields.io/github/forks/Nischal-Acharya/repo-name?style=flat-square" />
+  <img src="https://img.shields.io/github/license/Nischal-Acharya/repo-name?style=flat-square" />
+</p>
 
 Auto-Git is a set of command-line utilities for managing GitHub repositories and their contents directly from the terminal. It simplifies common GitHub tasks such as creating, deleting, and listing repositories, as well as listing the contents of those repositories.
 
@@ -18,12 +24,6 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
 
 ---
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Bash-Expert-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Python-Intermediate-yellow?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Git-Expert-green?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/GitHub-purple?style=for-the-badge" />
-</p>
 
 
 ## Installation 🛠
