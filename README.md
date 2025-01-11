@@ -5,14 +5,14 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
 
 <p align="center">
   <a href="https://youtube.com"><img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=for-the-badge" /></a>
-  <img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=for-the-badge" />
-  <img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=for-the-badge" />
-  <img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge&color=gold" />
-   <img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge&color=purple" />
-  <img src="https://img.shields.io/badge/Python-47%25-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Bash-27%25-green?style=for-the-badge&color=green" />
-  <img src="https://img.shields.io/badge/Roff-25%25-yellow?style=for-the-badge&color=teal" />
+  <a href="https://youtube.com"><img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=for-the-badge" /></a>
+  <a href="https://youtube.com"><img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge&color=gold" /></a>
+  <a href="https://youtube.com"><img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge&color=purple" /></a>
+  <a href="https://youtube.com"><img src="https://img.shields.io/badge/Python-47%25-blue?style=for-the-badge" /></a>
+  <a href="https://youtube.com"><img src="https://img.shields.io/badge/Bash-27%25-green?style=for-the-badge&color=green" /></a>
+  <a href="https://youtube.com"><img src="https://img.shields.io/badge/Roff-25%25-yellow?style=for-the-badge&color=teal" /></a>
 </p>
+
 
 ![autogit](https://github.com/user-attachments/assets/457b361d-d48c-4d22-99a0-78175b36a820)
 
