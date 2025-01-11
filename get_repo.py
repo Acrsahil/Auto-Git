@@ -33,12 +33,12 @@ RESET = "\033[0m"
 BLUE = "\033[94m"
 
 
-filecnt = 0
-dircnt = 0
-
-
 def ls_inside_repo(lsts):
+
     for con in lsts:
+        filecnt = 0
+        dircnt = 0
+        correct = True
         try:
             mycontent = g.get_user().get_repo(con)
             print()
@@ -53,13 +53,17 @@ def ls_inside_repo(lsts):
             while contents:
                 file_content = contents.pop(0)
                 if file_content.type == "dir":
+                    dircnt += 1
                     print(f"{BLUE}      {file_content.path}/ {RESET}")
                 else:
                     print(f"{GREEN}      {file_content.path} {RESET}")
+                    filecnt += 1
         except UnknownObjectException:
+            correct = False
             print(f"\n{YELLOW} Warning!: Repository '{con}' not found! {RESET}")
             print(f"{YELLOW}*{'-'*(len(warninglen)+len(con)+1)}*{RESET}")
         except GithubException as e:
+            correct = False
             if e.status == 404 and "empty" in e.data.get("message", "").lower():
                 print(f"\n{YELLOW} Warning!: Repository '{con}' is empty!{RESET}")
                 print(f"{YELLOW}*{'-'*(len(warninglen)+len(con))}*{RESET}")
@@ -69,11 +73,14 @@ def ls_inside_repo(lsts):
                 )
                 print(f"{YELLOW}*{'-'*(len(warninglen)+len(con)+1)}*{RESET}")
         except Exception as e:
+            correct = False
             print(
                 f"\n{YELLOW} Warning!: An unexpected error occurred while accessing '{con}' - {e}{RESET}"
             )
             print(f"{YELLOW}*{'-'*(len(warninglen)+len(con)+1)}*{RESET}")
-
+        if correct:
+            print()
+            print(f"{BLUE}      Dir: {dircnt} {GREEN}  File: {filecnt}")
     print()
 
 
