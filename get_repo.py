@@ -99,6 +99,7 @@ def ls_repos():
         # Printing Total Repos in bold blue color
         print()
         print(f"{BLUE}     \033[1m Total Repos: {cnt}{RESET}")
+        print()
 
     except Exception as e:
         print(f"{YELLOW}Error: Unable to list repositories - {e}{RESET}")
