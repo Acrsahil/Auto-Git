@@ -7,7 +7,6 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
   <img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=for-the-badge" />
   <img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=for-the-badge" />
   <img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge&color=gold" />
-  
    <img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge&color=purple" />
   <img src="https://img.shields.io/badge/Python-47%25-blue?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Bash-27%25-green?style=for-the-badge&color=green" />
