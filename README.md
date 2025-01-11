@@ -63,7 +63,7 @@ Before using Git-Auto, ensure that you have configured your GitHub access token 
     ./install.py
 
 
-It will ask you to input your GitHub username and access token.
+It will ask you to input your GitHub access token.
 
 ## Guide 📚
 
