@@ -2,14 +2,15 @@
 
 
 <p align="center">
-  <img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=for-the-badge&color=purple" width="120" />
-  <img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=for-the-badge&color=gold" width="120" />
-  <img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge&color=teal" width="120" />
-  <img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge&color=orange" width="120" />
-  <img src="https://img.shields.io/badge/Python-47%25-blue?style=for-the-badge&color=blue" width="120" />
-  <img src="https://img.shields.io/badge/Bash-27%25-green?style=for-the-badge&color=green" width="120" />
-  <img src="https://img.shields.io/badge/Roff-25%25-yellow?style=for-the-badge&color=yellow" width="120" />
+  <img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=for-the-badge&color=purple" width="100" />
+  <img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=for-the-badge&color=gold" width="100" />
+  <img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge&color=teal" width="100" />
+  <img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge&color=orange" width="100" />
+  <img src="https://img.shields.io/badge/Python-47%25-blue?style=for-the-badge&color=blue" width="100" />
+  <img src="https://img.shields.io/badge/Bash-27%25-green?style=for-the-badge&color=green" width="100" />
+  <img src="https://img.shields.io/badge/Roff-25%25-yellow?style=for-the-badge&color=yellow" width="100" />
 </p>
+
 
 
 
