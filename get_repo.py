@@ -98,7 +98,7 @@ def ls_repos():
 
         # Printing Total Repos in bold blue color
         print()
-        print(f"{BLUE}     \033[1m Total Repos: {cnt}{RESET}")
+        print(f"{BLUE}     \033[1mTotal Repos: {cnt}{RESET}")
         print()
 
     except Exception as e:
