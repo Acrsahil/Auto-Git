@@ -40,8 +40,8 @@ Follow these steps to install Auto-Git:
 
 Clone this repository to your local machine by running:
 
-git clone https://github.com/Acrsahil/Auto-Git.git
-cd Auto-Git
+    git clone https://github.com/Acrsahil/Auto-Git.git
+    cd Auto-Git
 
 ## Step 2: Install Dependencies
 
