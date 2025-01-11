@@ -6,11 +6,11 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
 <p align="center">
   <a href="https://github.com/Acrsahil/Auto-Git/graphs/contributors"><img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=for-the-badge" /></a>
   <a href="https://github.com/Acrsahil/Auto-Git/stargazers"><img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=for-the-badge" /></a>
-  <a href="https://youtube.com"><img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge&color=gold" /></a>
-  <a href="https://youtube.com"><img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge&color=purple" /></a>
-  <a href="https://youtube.com"><img src="https://img.shields.io/badge/Python-47%25-blue?style=for-the-badge" /></a>
-  <a href="https://youtube.com"><img src="https://img.shields.io/badge/Bash-27%25-green?style=for-the-badge&color=green" /></a>
-  <a href="https://youtube.com"><img src="https://img.shields.io/badge/Roff-25%25-yellow?style=for-the-badge&color=teal" /></a>
+  <a href="https://github.com/Acrsahil/Auto-Git/forks"><img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge&color=gold" /></a>
+  <a href="https://github.com/Acrsahil/Auto-Git/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge&color=purple" /></a>
+  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-47%25-blue?style=for-the-badge" /></a>
+  <a href="https://www.gnu.org/"><img src="https://img.shields.io/badge/Bash-27%25-green?style=for-the-badge&color=green" /></a>
+  <a href="https://man.openbsd.org/roff.7"><img src="https://img.shields.io/badge/Roff-25%25-yellow?style=for-the-badge&color=teal" /></a>
 </p>
 
 
