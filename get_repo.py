@@ -33,6 +33,10 @@ RESET = "\033[0m"
 BLUE = "\033[94m"
 
 
+filecnt = 0
+dircnt = 0
+
+
 def ls_inside_repo(lsts):
     for con in lsts:
         try:
@@ -78,12 +82,24 @@ def ls_repos():
         myrepos = g.get_user().get_repos()
         print()
         print(f"{BLUE}*{'='*(len(countrepolen)+len(user.login)+1)}*{RESET}")
-        print(f"|{BLUE} Listing repos of  {user.login} |{RESET}")
+        print(f"{BLUE}| Listing repos of  {user.login} |{RESET}")
         print(f"{BLUE}*{'-'*(len(countrepolen)+len(user.login)+1)}*{RESET}")
         print()
+
+        # Set to track repositories (ignoring forks)
+        repo_names = set()
+        cnt = 0
+
         for repo in myrepos:
-            print(f"{BLUE}     {repo.name}{RESET}")
+            if repo.name not in repo_names:  # Only count non-fork repositories
+                cnt += 1
+                print(f"{BLUE}     {repo.name}{RESET}")
+            repo_names.add(repo.name)
+
+        # Printing Total Repos in bold blue color
         print()
+        print(f"{BLUE}     \033[1m Total Repos: {cnt}{RESET}")
+
     except Exception as e:
         print(f"{YELLOW}Error: Unable to list repositories - {e}{RESET}")
 
