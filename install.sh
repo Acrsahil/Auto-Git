@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Enhanced Install Script with Dynamic Aliases
+# Enhanced Install Script with Dynamic Aliases and Messages
 
 set -e  # Exit on any command failure
 set -o pipefail  # Catch errors in piped commands
@@ -24,6 +24,9 @@ command_exists() {
 setup_man_directory() {
   if [ ! -d "$MAN_DIR" ]; then
     sudo mkdir -p "$MAN_DIR"
+    echo "Created man directory: $MAN_DIR"
+  else
+    echo "Man directory already exists: $MAN_DIR"
   fi
 }
 
@@ -31,12 +34,18 @@ setup_man_directory() {
 setup_virtualenv() {
   if [ ! -d "$VENV_DIR" ]; then
     python3 -m venv "$VENV_DIR"
+    echo "Virtual environment created: $VENV_DIR"
+  else
+    echo "Virtual environment already exists: $VENV_DIR"
   fi
 
   source "$VENV_DIR/bin/activate"
   if ! pip show PyGithub &>/dev/null; then
     pip install --upgrade pip
     pip install PyGithub
+    echo "PyGithub installed."
+  else
+    echo "PyGithub is already installed."
   fi
   deactivate
 }
@@ -47,6 +56,9 @@ setup_key_file() {
     echo "Enter your key:"
     read -r user_key
     echo "$user_key" > "$CURRENT_PATH/mykey.txt"
+    echo "Key file created: $CURRENT_PATH/mykey.txt"
+  else
+    echo "Key file already exists: $CURRENT_PATH/mykey.txt"
   fi
 }
 
@@ -64,8 +76,12 @@ add_dynamic_aliases() {
 
   # Add each alias to the alias file if not already present
   for alias_cmd in "${aliases[@]}"; do
+    alias_name=$(echo "$alias_cmd" | awk -F= '{print $1}' | sed "s/alias //")
     if ! grep -q "$alias_cmd" "$ALIAS_FILE"; then
       echo "$alias_cmd" >> "$ALIAS_FILE"
+      echo "Alias '$alias_name' added to alias.sh"
+    else
+      echo "Alias '$alias_name' already exists in alias.sh"
     fi
   done
 }
@@ -83,6 +99,9 @@ install_man_page() {
     if [ ! -f "$man_page_path" ] && [ -f "$man_page_file" ]; then
       sudo cp "$man_page_file" "$MAN_DIR"
       sudo mandb
+      echo "Man page installed: $man_page_name"
+    else
+      echo "Man page already exists: $man_page_name"
     fi
   done
 }
@@ -92,6 +111,9 @@ add_source_to_shell_configs() {
   for shell_config in "${SHELL_CONFIG_FILES[@]}"; do
     if [ -f "$shell_config" ] && ! grep -q "source $ALIAS_FILE" "$shell_config"; then
       echo "source $ALIAS_FILE" >> "$shell_config"
+      echo "Added 'source $ALIAS_FILE' to $shell_config"
+    else
+      echo "'source $ALIAS_FILE' already exists in $shell_config"
     fi
   done
 }
