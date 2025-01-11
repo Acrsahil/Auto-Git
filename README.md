@@ -14,7 +14,7 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
 </p>
 
 
-![2025-01-09_16-50-39](https://github.com/user-attachments/assets/51c6efbe-dd28-4c43-81c5-d149668cb656)
+![Banner](guide/banner.png)
 
 ## Table of Contents 📚
 
