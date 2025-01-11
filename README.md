@@ -19,10 +19,12 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
 ---
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Java-Expert-blue?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/JavaScript-Intermediate-yellow?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Python-Enthusiast-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Bash-Expert-blue?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Python-Intermediate-yellow?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Git-Expert-green?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/GitHub-Advanced-purple?style=for-the-badge" />
 </p>
+
 
 ## Installation 🛠
 
