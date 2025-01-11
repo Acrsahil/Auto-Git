@@ -1,0 +1,46 @@
+.TH GPUSH 1 "January 2025" "sahildas" "GitHub Management"
+.SH NAME
+gpush \- Command-line utility for pushing changes to the main branch of a Git repository
+.SH SYNOPSIS
+.B gpush
+.SH DESCRIPTION
+The \fBgpush\fR command automates the process of staging, committing, and pushing changes to the main branch of a Git repository. 
+
+This command:
+  \- Prompts the user for a commit message.
+  \- Stages all changes in the current repository.
+  \- Commits the changes with the provided commit message.
+  \- Pushes the commit to the \fImain\fR branch on the remote repository.
+
+.SH REQUIREMENTS
+.TP
+\- Git installed locally
+.TP
+\- Properly configured remote repository (origin)
+.TP
+\- bash or zsh shell
+
+.SH EXAMPLES
+Stage, commit, and push changes with the commit message "Fixed a bug":
+.nf
+  gpush
+  Enter your commit message:
+  Fixed a bug
+.fi
+
+.SH FILES
+None specific to this script. It relies on the local Git configuration for the repository.
+
+.SH EXIT STATUS
+The script returns the following exit codes:
+.TP
+0  Successful execution
+.TP
+1  Errors during Git operations (e.g., no remote repository configured, no changes to commit)
+
+.SH AUTHORS
+Created by sahildas.
+
+.SH BUGS
+Please report any issues or suggestions to the project repository.
+

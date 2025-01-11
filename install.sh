@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Enhanced Install Script
+# Enhanced Install Script with Check for Existing Man Pages
 
 set -e  # Exit on any command failure
 set -o pipefail  # Catch errors in piped commands
@@ -8,12 +8,18 @@ set -o pipefail  # Catch errors in piped commands
 CURRENT_SHELL=$(basename "$SHELL")
 ALIAS_NAME_CREATE="gmkdir"
 ALIAS_NAME_GRMDIR="grmdir"
+ALIAS_NAME_GLS="gls"
+ALIAS_NAME_GPUSH="gpush"
 CURRENT_PATH=$(dirname "$(realpath "$0")")
 VENV_DIR="$CURRENT_PATH/myenv"
 KEY_FILE="$CURRENT_PATH/mykey.txt"
 ALIAS_FILE="$CURRENT_PATH/alias.sh"
 SHELL_CONFIG_FILES=("$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.config/fish/config.fish")
 MAN_DIR="$(manpath 2>/dev/null | awk -F: '{print $1}')/man1"
+GPUSH_MAN="$CURRENT_PATH/gpush.1"
+GMKDIR_MAN="$CURRENT_PATH/gmkdir.1"
+GRMDIR_MAN="$CURRENT_PATH/grmdir.1"
+GLS_MAN="$CURRENT_PATH/gls.1"
 
 # Function to check for a command's existence
 command_exists() {
@@ -84,26 +90,34 @@ setup_grmdir_alias() {
 }
 
 setup_gls_alias() {
-  add_alias_to_file "gls" "source $VENV_DIR/bin/activate && python $CURRENT_PATH/get_repo.py"
+  add_alias_to_file "$ALIAS_NAME_GLS" "source $VENV_DIR/bin/activate && python $CURRENT_PATH/get_repo.py"
 }
 
-# Function to set up the man page
-setup_man_pages() {
-  local aliases=("gls" "gmkdir" "grmdir")
-  local man_dir="$MAN_DIR"
+setup_gpush_alias() {
+  add_alias_to_file "$ALIAS_NAME_GPUSH" "bash $CURRENT_PATH/gpush.sh"
+}
 
-  for alias_name in "${aliases[@]}"; do
-    local man_page_path="$man_dir/$alias_name.1"
+# Install man page, check if it exists first
+install_man_page() {
+  local man_page_file
+  local man_page_name
+  
+  # Check and install man pages if not present
+  for man_page_file in "$GPUSH_MAN" "$GMKDIR_MAN" "$GRMDIR_MAN" "$GLS_MAN"; do
+    man_page_name=$(basename "$man_page_file")
+    local man_page_path="$MAN_DIR/$man_page_name"
 
-    if [[ -f "$man_page_path" ]]; then
-      echo "Man page for '$alias_name' already exists in $man_dir. Skipping setup."
+    if [ -f "$man_page_path" ]; then
+      echo "Man page '$man_page_path' already exists. Skipping installation."
     else
-      echo "Creating man page for '$alias_name' in $man_dir..."
-      # Create or copy the man page (example: use help2man or echo a dummy page)
-      echo ".TH $alias_name 1 \"$(date +"%Y-%m-%d")\" \"Auto-Git\" \"User Commands\"" > "$man_page_path"
-      echo ".SH NAME" >> "$man_page_path"
-      echo "$alias_name - Custom alias man page" >> "$man_page_path"
-      echo "Man page for '$alias_name' created in $man_dir."
+      if [ -f "$man_page_file" ]; then
+        echo "Installing man page '$man_page_name'..."
+        sudo cp "$man_page_file" "$MAN_DIR"
+        sudo mandb
+        echo "Man page '$man_page_name' installed successfully."
+      else
+        echo "Man page file '$man_page_file' not found. Skipping man page installation."
+      fi
     fi
   done
 }
@@ -125,8 +139,9 @@ main() {
   setup_create_alias
   setup_grmdir_alias
   setup_gls_alias
+  setup_gpush_alias
   setup_man_directory
-  setup_man_pages
+  install_man_page
   add_source_to_shell_configs
   echo "Installation complete!"
 }
