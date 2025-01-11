@@ -2,7 +2,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=for-the-badge" />
   <img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=for-the-badge" />
-  <img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge" />
+  <img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge&color=gold" />
   
    <img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Python-47%25-blue?style=for-the-badge" />
