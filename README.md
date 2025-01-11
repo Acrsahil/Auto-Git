@@ -2,8 +2,8 @@
 <p align="center">
   <img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=flat-square" />
   <img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=flat-square" />
-  <img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=flat-square" />
-  <img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=flat-square" />
+  <img src="https://img.shields.io/github/forks/Acrsahil/Auto-Git?style=for-the-badge" />
+  
    <img src="https://img.shields.io/github/license/Acrsahil/Auto-Git?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Python-47%25-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/Bash-27%25-green?style=flat-square" />
