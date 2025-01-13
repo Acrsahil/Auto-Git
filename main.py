@@ -1,6 +1,5 @@
 import os
 import sys
-import subprocess
 from github import Github
 
 # Check if repository name is provided as a command-line argument
@@ -21,7 +20,9 @@ with open(f"{maindir}/path.txt", "r") as file:
 
 # Create a new directory for the repository
 path = f"{path}/{name}"
-os.system(f"mkdir -p {path}")
+os.system(
+    f"mkdir -p {path} && touch {path}/README.md && cp {maindir}/exreadme.md {path}/README.md && touch {path}/.gitignore"
+)
 
 # Read the token from 'mykey.txt'
 with open(f"{maindir}/mykey.txt", "r") as file:
@@ -36,7 +37,7 @@ repo = user.create_repo(name)
 
 # Initialize the git repository locally and set up the remote
 os.system(
-    f"cd {path} && git init && git remote add origin git@github.com:{user.login}/{name}.git && git branch -M main && git status"
+    f"cd {path} && git init && git remote add origin git@github.com:{user.login}/{name}.git && git branch -M main"
 )
 
 print(f"Repository '{name}' created successfully on GitHub and initialized locally!")
