@@ -20,6 +20,30 @@ command_exists() {
   command -v "$1" &>/dev/null
 }
 
+# Function to install Python if it's not installed
+install_python_if_needed() {
+  if ! command_exists python3; then
+    echo "Python is not installed. Installing Python..."
+    # Install Python 3 using system's package manager
+    if command_exists apt-get; then
+      sudo apt-get update
+      sudo apt-get install -y python3 python3-venv python3-pip
+    elif command_exists dnf; then
+      sudo dnf install python3 python3-virtualenv python3-pip
+    elif command_exists yum; then
+      sudo yum install python3 python3-virtualenv python3-pip
+    elif command_exists pacman; then
+      sudo pacman -S python python-virtualenv python-pip
+    else
+      echo "Package manager not found. Please install Python manually."
+      exit 1
+    fi
+    echo "Python installed successfully."
+  else
+    echo "Python is already installed."
+  fi
+}
+
 # Create man directory if not exists
 setup_man_directory() {
   if [ ! -d "$MAN_DIR" ]; then
@@ -120,6 +144,7 @@ add_source_to_shell_configs() {
 
 # Main Function
 main() {
+  install_python_if_needed  # Check and install Python if necessary
   setup_virtualenv
   setup_key_file
   add_dynamic_aliases
@@ -129,5 +154,7 @@ main() {
   echo "Installation complete!"
 }
 
-
 main
+
+
+
