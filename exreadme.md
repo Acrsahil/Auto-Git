@@ -3,13 +3,10 @@
 Project Description.
 
 <p align="center">
-  <a href="Link to Contributors"><img src="Link to Contributors Badge" /></a>
-  <a href="Link to Stars"><img src="Link to Stars Badge" /></a>
-  <a href="Link to Forks"><img src="Link to Forks Badge" /></a>
-  <a href="Link to License"><img src="Link to License Badge" /></a>
-  <a href="Link to Python"><img src="Link to Python Badge" /></a>
-  <a href="Link to Bash"><img src="Link to Bash Badge" /></a>
-  <a href="Link to Roff"><img src="Link to Roff Badge" /></a>
+  <a href="@1"><img src="@one" /></a>
+  <a href="@2"><img src="@two" /></a>
+  <a href="@3"><img src="@three" /></a>
+  <a href="@4"><img src="@four" /></a>
 </p>
 
 ![Banner Image](Path to Banner Image)
@@ -34,8 +31,8 @@ Follow these steps to install the project:
 
 Clone this repository to your local machine by running:
 
-    git clone Repository Link
-    cd Project Folder
+    git_clone_Repository_Link
+    cd_Project_Folder
 
 ## Step 2: Install Dependencies
 

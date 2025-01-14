@@ -20,6 +20,17 @@ command_exists() {
   command -v "$1" &>/dev/null
 }
 
+setup_alias_file() {
+  if [ ! -f "$ALIAS_FILE" ]; then
+    touch "$ALIAS_FILE"
+    chmod +x "$ALIAS_FILE"
+    echo "#!/bin/bash" > "$ALIAS_FILE"
+    echo "Alias file created and made executable: $ALIAS_FILE"
+  else
+    echo "Alias file already exists: $ALIAS_FILE"
+  fi
+}
+
 # Function to install Python if it's not installed
 install_python_if_needed() {
   if ! command_exists python3; then
@@ -92,7 +103,8 @@ add_dynamic_aliases() {
 
   # Dynamically create aliases
   local aliases=(
-    "alias gmkdir='source $base_path/myenv/bin/activate && pwd | python $base_path/getpath.py && python $base_path/main.py'"
+    "alias rudo='source $base_path/changepath.sh'"
+    "alias gmkdir='function _gmkdir() { source $base_path/myenv/bin/activate && pwd | python $base_path/getpath.py && python $base_path/main.py \"\$@\" && . $base_path/changepath.sh; }; _gmkdir'"
     "alias grmdir='source $base_path/myenv/bin/activate && python $base_path/deleterepo.py'"
     "alias gls='source $base_path/myenv/bin/activate && python $base_path/get_repo.py'"
     "alias gpush='bash $base_path/gpush.sh'"
