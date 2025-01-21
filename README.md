@@ -36,7 +36,7 @@ Here’s a list of the available commands and their descriptions:
 
 | Command          | Description                                        |
 |-------------------|----------------------------------------------------|
-| `gls`            | Lists the contents of the current directory.       |
+| `gls`            | Lists the repository.                              |
 | `gmkdir`         | Creates a new directory and adds it to Git.        |
 | `grmdir`         | Removes a directory and its contents from Git.     |
 | `gpush`          | Commits and pushes changes to the remote repo.     |
