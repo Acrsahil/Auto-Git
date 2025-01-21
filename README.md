@@ -30,6 +30,17 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
 
 ---
 
+## Commands  
+
+Here’s a list of the available commands and their descriptions:  
+
+| Command          | Description                                        |
+|-------------------|----------------------------------------------------|
+| `gls`            | Lists the contents of the current directory.       |
+| `gmkdir`         | Creates a new directory and adds it to Git.        |
+| `grmdir`         | Removes a directory and its contents from Git.     |
+| `gpush`          | Commits and pushes changes to the remote repo.     |
+| `gls + reponame` | Lists the contents of the specified repository.    |
 
 
 ## Installation 🛠
