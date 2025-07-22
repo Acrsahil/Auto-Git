@@ -2,7 +2,6 @@
 
 Auto-Git is a set of command-line utilities for managing GitHub repositories and their contents directly from the terminal. It simplifies common GitHub tasks such as creating, deleting, and listing repositories, as well as listing the contents of those repositories.
 
-
 <p align="center">
   <a href="https://github.com/Acrsahil/Auto-Git/graphs/contributors"><img src="https://img.shields.io/github/contributors/Acrsahil/Auto-Git?style=for-the-badge" /></a>
   <a href="https://github.com/Acrsahil/Auto-Git/stargazers"><img src="https://img.shields.io/github/stars/Acrsahil/Auto-Git?style=for-the-badge" /></a>
@@ -12,7 +11,6 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
   <a href="https://www.gnu.org/"><img src="https://img.shields.io/badge/Bash-27%25-green?style=for-the-badge&color=green" /></a>
   <a href="https://man.openbsd.org/roff.7"><img src="https://img.shields.io/badge/Roff-25%25-yellow?style=for-the-badge&color=teal" /></a>
 </p>
-
 
 ![Banner](guide/banner.png)
 
@@ -30,18 +28,17 @@ Auto-Git is a set of command-line utilities for managing GitHub repositories and
 
 ---
 
-## Commands  
+## Commands
 
-Here’s a list of the available commands and their descriptions:  
+Here’s a list of the available commands and their descriptions:
 
-| Command          | Description                                        |
-|-------------------|----------------------------------------------------|
-| `gls`            | Lists the repository.                              |
-| `gmkdir`         | Creates a new directory and adds it to Git.        |
-| `grmdir`         | Removes a directory and its contents from Git.     |
-| `gpush`          | Commits and pushes changes to the remote repo.     |
-| `gls + reponame` | Lists the contents of the specified repository.    |
-
+| Command          | Description                                     |
+| ---------------- | ----------------------------------------------- |
+| `gls`            | Lists the repository.                           |
+| `gmkdir`         | Creates a new directory and adds it to Git.     |
+| `grmdir`         | Removes a directory and its contents from Git.  |
+| `gpush`          | Commits and pushes changes to the remote repo.  |
+| `gls + reponame` | Lists the contents of the specified repository. |
 
 ## Installation 🛠
 
@@ -62,7 +59,7 @@ Make sure you have python3 and pip installed
 
 Before using Git-Auto, ensure that you have configured your GitHub access token for authentication.
 
- [Generate GitHub Personal Access Token](#guide-)
+[Generate GitHub Personal Access Token](#guide-)
 
     Visit your GitHub Personal Access Tokens page.
     Click Generate new token.
@@ -73,7 +70,6 @@ Before using Git-Auto, ensure that you have configured your GitHub access token 
 
     ./install.py
 
-
 It will ask you to input your GitHub access token.
 
 ## Guide 📚
@@ -81,46 +77,60 @@ It will ask you to input your GitHub access token.
 Below is a step-by-step guide to help you get Personal Access Tokens:
 
 ### Step 1: Terminal
+
 ![Step 1](guide/1.png)
 
 ### Step 2: Settings
+
 ![Step 2](guide/2.png)
 
 ### Step 3: Developer Settings
+
 ![Step 3](guide/3.png)
 
 ### Step 4: Personal Access Token
+
 ![Step 4](guide/4.png)
 
 ### Step 5: Tokens (Classic)
+
 ![Step 5](guide/5.png)
 
 ### Step 6: Generate new Token
+
 ![Step 6](guide/6.png)
 
 ### Step 7: Generate new Token (Dropdown)
+
 ![Step 7](guide/7.png)
 
 ### Step 8: New Personal Access Token (Classic)
+
 ![Step 8](guide/8.png)
 
 ### Step 9: Token Expiraion
+
 ![Step 9](guide/9.png)
 
 ### Step 10: Select Scopes
+
 ![Step 10](guide/10.png)
 
 ### Step 11: Generate Token
+
 ![Step 11](guide/11.png)
 
 ### Step 12: Congratulations
-![Step 12](guide/12.png)    
+
+![Step 12](guide/12.png)
 
 ### Step 13: Paste Token
-![Step 13](guide/13.png) 
+
+![Step 13](guide/13.png)
 
 ### Step 14: Kick Out your issue!
-![Step 14](guide/14.png) 
+
+![Step 14](guide/14.png)
 
 ## Examples
 
@@ -161,11 +171,9 @@ This will list all the contents inside your repo1 and repo2.
     2: Authentication failure 🔐
     3: Invalid repository name ⚠️
 
-
-
 ## Authors 👨‍💻👩‍💻
 
-Sahil Das: Creator and Lead Developer 💻
+Sahil Acharya : Creator and Lead Developer 💻
 
 ## Bugs and Feedback 🐞
 
