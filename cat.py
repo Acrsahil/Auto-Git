@@ -1,9 +1,7 @@
 import os
 import sys
-from github import Github
-from github import Auth
-from github.GithubException import UnknownObjectException, GithubException
 
+from github import Auth, Github
 
 reponaming = " Listing contents of   "
 countrepolen = " Listing repos of  "

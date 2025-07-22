@@ -11,4 +11,3 @@ git push -u origin main
 
 # Confirm completion
 echo "Changes have been pushed to the main branch!"
-

@@ -1,5 +1,6 @@
 import os
 import sys
+
 from github import Github
 
 # Check if repository name is provided as a command-line argument
@@ -21,7 +22,9 @@ with open(f"{maindir}/path.txt", "r") as file:
 # Create a new directory for the repository
 path = f"{path}/{name}"
 os.system(
-    f"mkdir -p {path} && touch {path}/README.md && cp {maindir}/exreadme.md {path}/README.md && touch {path}/.gitignore"
+    f"mkdir -p {path} && touch {path}/README.md && cp {maindir}/exreadme.md {
+        path
+    }/README.md && touch {path}/.gitignore"
 )
 
 # modifying readme.md
@@ -43,12 +46,18 @@ starLink = f"https://github.com/{user.login}/{name}/stargazers"
 forkLink = f"https://github.com/{user.login}/{name}/forks"
 licenseLink = f"https://github.com/{user.login}/{name}/blob/main/LICENSE"
 
-contributorsBadgeLink = f"https://img.shields.io/github/contributors/{user.login}/{name}?style=for-the-badge"
+contributorsBadgeLink = f"https://img.shields.io/github/contributors/{user.login}/{
+    name
+}?style=for-the-badge"
 starBadgeLink = (
     f"https://img.shields.io/github/stars/{user.login}/{name}?style=for-the-badge"
 )
-forkBadgeLink = f"https://img.shields.io/github/forks/{user.login}/{name}?style=for-the-badge&color=gold"
-licenseBadgeLink = f"https://img.shields.io/github/license/{user.login}/{name}?style=for-the-badge&color=purple"
+forkBadgeLink = f"https://img.shields.io/github/forks/{user.login}/{
+    name
+}?style=for-the-badge&color=gold"
+licenseBadgeLink = f"https://img.shields.io/github/license/{user.login}/{
+    name
+}?style=for-the-badge&color=purple"
 
 
 gitCloneLink = f"git clone https://github.com/{user.login}/{name}"
@@ -73,11 +82,12 @@ with open(f"{path}/README.md", "w") as file:
 
 # Initialize the git repository locally and set up the remote
 os.system(
-    f"cd {path} && git init && git remote add origin git@github.com:{user.login}/{name}.git && git branch -M main"
+    f"cd {path} && git init && git remote add origin git@github.com:{user.login}/{
+        name
+    }.git && git branch -M main"
 )
 with open(f"{maindir}/changepath.sh", "w") as file:
     file.write(f"cd {path}")
-os.system(f"source {maindir}/./changepath.sh")
 
 
 print(f"Repository '{name}' created successfully on GitHub and initialized locally!")
