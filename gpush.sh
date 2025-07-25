@@ -14,7 +14,7 @@ git commit -m "$commit_message"
 
 # Push using token temporarily
 remote_url=$(git remote get-url origin)
-token_url="${remote_url/https:\/\//https:\/\/}"
+token_url="${remote_url/https:\/\//https:\/\/$key@}"
 
 git push "$token_url" HEAD:main
 
