@@ -35,7 +35,6 @@ setup_alias_file() {
 install_python_if_needed() {
     if ! command_exists python3; then
         echo "Python is not installed. Installing Python..."
-        # Install Python 3 using system's package manager
         if command_exists apt-get; then
             sudo apt-get update
             sudo apt-get install -y python3 python3-venv python3-pip
@@ -46,12 +45,29 @@ install_python_if_needed() {
         elif command_exists pacman; then
             sudo pacman -S python python-virtualenv python-pip
         else
-            echo "Package manager not found. Please install Python manually."
+            echo "❌ Package manager not found. Please install Python manually."
             exit 1
         fi
-        echo "Python installed successfully."
+        echo "✅ Python installed successfully."
     else
-        echo "Python is already installed."
+        echo "✅ Python is already installed."
+        # 🧪 Check for venv module availability
+        if ! python3 -m venv --help &>/dev/null; then
+            echo "🛠️  'venv' module is missing. Attempting to install it..."
+            if command_exists apt-get; then
+                sudo apt-get install -y python3-venv
+            elif command_exists dnf; then
+                sudo dnf install -y python3-virtualenv
+            elif command_exists yum; then
+                sudo yum install -y python3-virtualenv
+            elif command_exists pacman; then
+                sudo pacman -S python-virtualenv
+            else
+                echo "❌ Could not install python3-venv automatically. Please install it manually."
+                exit 1
+            fi
+            echo "✅ 'venv' module installed."
+        fi
     fi
 }
 
