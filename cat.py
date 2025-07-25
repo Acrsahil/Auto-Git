@@ -11,8 +11,8 @@ maindir = os.path.dirname(os.path.abspath(__file__))
 
 # Read the token from the file
 try:
-    with open(f"{maindir}/mykey.txt", "r") as file:
-        key = file.read().strip()
+with open(f"{maindir}/.secure_keys/mykey.txt", "r") as file:
+    key = file.read().strip()
 except FileNotFoundError:
     print(
         "\033[93mError: Token file 'mykey.txt' not found.\033[0m"

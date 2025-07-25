@@ -32,7 +32,6 @@ os.system(
 # Read the token from 'mykey.txt'
 with open(f"{maindir}/.secure_keys/mykey.txt", "r") as file:
     key = file.read().strip()
-print(len(key))
 
 # Authenticate with GitHub
 g = Github(key)  # Authenticate using the access token directly
