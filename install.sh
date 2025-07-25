@@ -87,7 +87,9 @@ setup_virtualenv() {
 
 # Function to manage key file
 setup_key_file() {
-    local secure_dir="$HOME/.secure_keys"
+    local script_dir
+    script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    local secure_dir="$script_dir/.secure_keys"
     local key_file="$secure_dir/mykey.txt"
 
     mkdir -p "$secure_dir"
@@ -103,7 +105,6 @@ setup_key_file() {
         echo "✅ Secure key file already exists: $key_file"
     fi
 }
-
 # Function to add aliases dynamically
 add_dynamic_aliases() {
     local base_path="$CURRENT_PATH"
