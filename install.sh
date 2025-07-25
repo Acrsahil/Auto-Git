@@ -86,6 +86,8 @@ setup_virtualenv() {
 }
 
 # Function to manage key file
+# Function to manage key file
+# Function to manage key file
 setup_key_file() {
     local script_dir
     script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -96,13 +98,32 @@ setup_key_file() {
     chmod 700 "$secure_dir" # Only owner can access this folder
 
     if [ ! -f "$key_file" ]; then
-        echo "Enter your GitHub token:"
-        read -r user_key
+        echo "  GitHub token is required to access the GitHub API."
+        echo -e "\n\033[0;32m  Please generate a Personal Access Token (Classic) by following these steps:\033[0m"
+        echo -e "\033[0;32m1. Open this link in your browser: \033[38;5;208m https://github.com/settings/tokens/new\033[0m"
+        echo -e "\033[0;32m2. Select the following scopes:\033[0m"
+        echo -e "\033[0;32m   ✅ repo (Full control of private repositories)\033[0m"
+        echo -e "\033[0;32m   ✅ read:org (Optional, if working with org repos)\033[0m"
+        echo -e "\033[0;32m3. Click 'Generate token'\033[0m"
+        echo -e "\033[0;32m4. Copy the token (You will not see it again!)\033[0m"
+        echo
+
+        # 👇 Make input visible (normal `read`)
+        echo -n "Paste your GitHub token here: "
+        read user_key
+
+        # 🔒 Show masked version right after
+        local first_part="${user_key:0:5}"
+        local hidden_part_length=$((${#user_key} - 5))
+        local masked_part=$(printf '%*s' "$hidden_part_length" '' | tr ' ' '*')
+        echo "✅ Received token: ${first_part}${masked_part}"
+
+        # Save securely
         echo "$user_key" >"$key_file"
-        chmod 600 "$key_file" # Only you can read/write
-        echo "🔒 Key stored securely at: $key_file"
+        chmod 600 "$key_file"
+        echo "🔒 Token saved securely at: $key_file"
     else
-        echo "✅ Secure key file already exists: $key_file"
+        echo "🔒 Secure key file already exists: $key_file"
     fi
 }
 # Function to add aliases dynamically
