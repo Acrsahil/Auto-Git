@@ -1,1 +1,1 @@
-cd /home/window/sudoboyssss
+cd /home/window/hellozeroS

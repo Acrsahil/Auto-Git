@@ -1,6 +1,6 @@
 myenv/
 __pycache__/
-mykey.txt
+.secure_keys/
 alias.sh
 
 

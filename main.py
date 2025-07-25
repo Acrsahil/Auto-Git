@@ -30,7 +30,7 @@ os.system(
 # modifying readme.md
 
 # Read the token from 'mykey.txt'
-with open(f"{maindir}/mykey.txt", "r") as file:
+with open(f"{maindir}/.secure_keys/mykey.txt", "r") as file:
     key = file.read().strip()
 
 # Authenticate with GitHub
@@ -81,10 +81,9 @@ with open(f"{path}/README.md", "w") as file:
     file.write(content)
 
 # Initialize the git repository locally and set up the remote
+repo_url = f"https://github.com/{user.login}/{name}.git"
 os.system(
-    f"cd {path} && git init && git remote add origin git@github.com:{user.login}/{
-        name
-    }.git && git branch -M main"
+    f"cd {path} && git init && git remote add origin {repo_url} && git branch -M main"
 )
 with open(f"{maindir}/changepath.sh", "w") as file:
     file.write(f"cd {path}")

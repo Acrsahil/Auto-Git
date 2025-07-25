@@ -87,13 +87,20 @@ setup_virtualenv() {
 
 # Function to manage key file
 setup_key_file() {
-    if [ ! -f "$CURRENT_PATH/mykey.txt" ]; then
-        echo "Enter your key:"
+    local secure_dir="$HOME/.secure_keys"
+    local key_file="$secure_dir/mykey.txt"
+
+    mkdir -p "$secure_dir"
+    chmod 700 "$secure_dir" # Only owner can access this folder
+
+    if [ ! -f "$key_file" ]; then
+        echo "Enter your GitHub token:"
         read -r user_key
-        echo "$user_key" >"$CURRENT_PATH/mykey.txt"
-        echo "Key file created: $CURRENT_PATH/mykey.txt"
+        echo "$user_key" >"$key_file"
+        chmod 600 "$key_file" # Only you can read/write
+        echo "🔒 Key stored securely at: $key_file"
     else
-        echo "Key file already exists: $CURRENT_PATH/mykey.txt"
+        echo "✅ Secure key file already exists: $key_file"
     fi
 }
 
