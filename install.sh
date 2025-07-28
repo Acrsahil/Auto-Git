@@ -10,10 +10,10 @@ VENV_DIR="$CURRENT_PATH/myenv"
 ALIAS_FILE="$CURRENT_PATH/alias.sh"
 SHELL_CONFIG_FILES=("$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.config/fish/config.fish")
 MAN_DIR="$(manpath 2>/dev/null | awk -F: '{print $1}')/man1"
-GPUSH_MAN="$CURRENT_PATH/gpush.1"
-GMKDIR_MAN="$CURRENT_PATH/gmkdir.1"
-GRMDIR_MAN="$CURRENT_PATH/grmdir.1"
-GLS_MAN="$CURRENT_PATH/gls.1"
+GPUSH_MAN="$CURRENT_PATH/man/gpush.1"
+GMKDIR_MAN="$CURRENT_PATH/man/gmkdir.1"
+GRMDIR_MAN="$CURRENT_PATH/man/grmdir.1"
+GLS_MAN="$CURRENT_PATH/man/gls.1"
 
 # Function to check for a command's existence
 command_exists() {
@@ -152,7 +152,7 @@ add_dynamic_aliases() {
 
     local aliases=(
         "alias rudo='source $base_path/changepath.sh'"
-        "alias gmkdir='function _gmkdir() { source $base_path/myenv/bin/activate && pwd | python $base_path/getpath.py && python $base_path/main.py \"\$@\" && source $base_path/changepath.sh && deactivate; }; _gmkdir'"
+        "alias gmkdir='function _gmkdir() { source $base_path/myenv/bin/activate && pwd | python $base_path/getpath.py && python $base_path/gmkdir.py \"\$@\" && source $base_path/changepath.sh && deactivate; }; _gmkdir'"
         "alias grmdir='function _grmdir() { source $base_path/myenv/bin/activate && python $base_path/deleterepo.py \"\$@\" && deactivate; }; _grmdir'"
         "alias gls='function _gls() { source $base_path/myenv/bin/activate && python $base_path/get_repo.py \"\$@\" && deactivate; }; _gls'"
         "alias gpush='bash $base_path/gpush.sh'"
