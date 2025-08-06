@@ -72,66 +72,6 @@ Before using Git-Auto, ensure that you have configured your GitHub access token 
 
 It will ask you to input your GitHub access token.
 
-## Guide 📚
-
-Below is a step-by-step guide to help you get Personal Access Tokens:
-
-### Step 1: Terminal
-
-![Step 1](guide/1.png)
-
-### Step 2: Settings
-
-![Step 2](guide/2.png)
-
-### Step 3: Developer Settings
-
-![Step 3](guide/3.png)
-
-### Step 4: Personal Access Token
-
-![Step 4](guide/4.png)
-
-### Step 5: Tokens (Classic)
-
-![Step 5](guide/5.png)
-
-### Step 6: Generate new Token
-
-![Step 6](guide/6.png)
-
-### Step 7: Generate new Token (Dropdown)
-
-![Step 7](guide/7.png)
-
-### Step 8: New Personal Access Token (Classic)
-
-![Step 8](guide/8.png)
-
-### Step 9: Token Expiraion
-
-![Step 9](guide/9.png)
-
-### Step 10: Select Scopes
-
-![Step 10](guide/10.png)
-
-### Step 11: Generate Token
-
-![Step 11](guide/11.png)
-
-### Step 12: Congratulations
-
-![Step 12](guide/12.png)
-
-### Step 13: Paste Token
-
-![Step 13](guide/13.png)
-
-### Step 14: Kick Out your issue!
-
-![Step 14](guide/14.png)
-
 ## Examples
 
 #### Create a Repository:📂
