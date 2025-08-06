@@ -1,1 +1,1 @@
-cd /home/window/sultiisssss
+cd /home/window/codehub/DSA_PROJECT

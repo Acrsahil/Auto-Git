@@ -1,4 +1,4 @@
-# Project Name 🚀
+# @18 🚀
 
 Project Description.
 
@@ -8,8 +8,6 @@ Project Description.
   <a href="@3"><img src="@three" /></a>
   <a href="@4"><img src="@four" /></a>
 </p>
-
-![Banner Image](Path to Banner Image)
 
 ## Table of Contents 📚
 
@@ -72,7 +70,7 @@ Description for command 2.
 
 ## Authors 👨‍💻👩‍💻
 
-Author Name: Role
+Author Name: @auth
 
 ## Bugs and Feedback 🐞
 

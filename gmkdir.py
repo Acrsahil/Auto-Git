@@ -56,6 +56,8 @@ cdPath = f"cd {name}"
 
 with open(f"{path}/README.md", "r") as file:
     content = file.read().strip()
+    content = content.replace("@18", name)
+    content = content.replace("@auth", user.name)
     content = content.replace("@1", contributorsLink)
     content = content.replace("@2", starLink)
     content = content.replace("@3", forkLink)
