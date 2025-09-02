@@ -1,1 +1,1 @@
-cd /home/window/codehub/DSA_PROJECT
+cd /home/window/codehub/whatsappclone
