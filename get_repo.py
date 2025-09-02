@@ -60,9 +60,8 @@ def ls_inside_repo(lsts):
         except Exception as e:
             correct = False
             print(
-                f"\n{YELLOW} Warning!: An unexpected error occurred while accessing '{
-                    con
-                }' - {e}{RESET}"
+                f"\n{YELLOW} Warning!: An unexpected error occurred while accessing "
+                f"'{con}' - {e}{RESET}"
             )
             print(f"{YELLOW}*{'-' * (len(warninglen) + len(con) + 1)}*{RESET}")
         if correct:
