@@ -54,13 +54,9 @@ def ls_inside_repo(lsts):
                 print(f"{YELLOW}*{'-' * (len(warninglen) + len(con))}*{RESET}")
             else:
                 print(
-                    f"\n{
-                        YELLOW
-                    } Warning!: An unexpected error occurred while accessing '{con}' - {
-                        e
-                    }{RESET}"
+                    f"\n{YELLOW} Warning!: An unexpected error occurred "
+                    f"while accessing '{con}' - {e}{RESET}"
                 )
-                print(f"{YELLOW}*{'-' * (len(warninglen) + len(con) + 1)}*{RESET}")
         except Exception as e:
             correct = False
             print(
