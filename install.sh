@@ -2,9 +2,9 @@
 
 # Enhanced Install Script with Dynamic Aliases and Messages
 
-set -e          # Exit on any command failure
-set -o pipefail # Catch errors in piped commands
-
+# set -e          # Exit on any command failure
+# set -o pipefail # Catch errors in piped commands
+#
 CURRENT_PATH=$(dirname "$(realpath "$0")")
 VENV_DIR="$CURRENT_PATH/myenv"
 ALIAS_FILE="$CURRENT_PATH/alias.sh"
