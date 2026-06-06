@@ -1,1 +1,1 @@
-cd /home/window/codehub/whatsappclone
+cd /home/hitler/AutoGitTest
