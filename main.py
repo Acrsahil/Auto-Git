@@ -8,6 +8,7 @@ from github.Auth import Token
 
 CLIENT_ID = "Ov23liTyWpzNLaARqSsG"
 TOKEN_FILE = os.path.expanduser("~/.gmkdir_token")
+maindir = os.path.dirname(os.path.abspath(__file__))
 
 
 # -----------------------------

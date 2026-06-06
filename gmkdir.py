@@ -1,4 +1,35 @@
+from github import GitignoreTemplate
 import main
+import requests
+
+
+def add_gitignore(project_path, lang="Python"):
+    lang = lang.lower()
+
+    gitignore_map = {
+    "python": "Python.gitignore",
+    "node": "Node.gitignore",
+    "java": "Java.gitignore",
+    "cpp": "C++.gitignore",
+    "c++": "C++.gitignore",
+    "go": "Go.gitignore",
+    "rust": "Rust.gitignore",
+    "android":"Android.gitignore",
+    "ruby":"Ruby.gitignore"
+}
+
+    if lang in gitignore_map:
+        url = f"https://raw.githubusercontent.com/github/gitignore/main/{gitignore_map[lang]}"
+
+        r = requests.get(url)
+        gitignore_content = r.text
+
+        with open(f"{project_path}/.gitignore", "w+") as f:
+            f.write(gitignore_content)
+
+        print(f"✔ .gitignore added for {lang}")
+    else:
+        print("Unknown Language!")
 
 userdata = main.user_cread()
 
@@ -9,6 +40,9 @@ if len(main.sys.argv) < 2:
 
 # Get the repository name from the command-line arguments
 name = main.sys.argv[1]
+programming_language = input("Programming Language: ")
+
+
 print(f"Repository Name: {name}")
 
 # Get the main directory of the script
@@ -21,10 +55,9 @@ with open(f"{maindir}/path.txt", "r") as file:
 # Create a new directory for the repository
 path = f"{path}/{name}"
 main.os.system(
-    f"mkdir -p {path} && touch {path}/README.md && cp {maindir}/exreadme.md {
-        path
-    }/README.md && touch {path}/.gitignore"
+    f"mkdir -p {path} && touch {path}/README.md && cp {maindir}/exreadme.md { path }/README.md && touch {path}/.gitignore"
 )
+add_gitignore(path,programming_language)
 
 
 # Create the repository on GitHub
