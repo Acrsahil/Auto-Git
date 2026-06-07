@@ -1,6 +1,9 @@
 from github import GitignoreTemplate
 import main
 import requests
+import questionary
+from InquirerPy import inquirer
+
 
 
 def add_gitignore(project_path, lang="Python"):
@@ -40,7 +43,35 @@ if len(main.sys.argv) < 2:
 
 # Get the repository name from the command-line arguments
 name = main.sys.argv[1]
-programming_language = input("Programming Language: ")
+
+import questionary
+from prompt_toolkit.styles import Style
+
+
+style = Style.from_dict({
+    "question": "bold",
+    "pointer": "fg:green bold",
+    "highlighted": "fg:green bold",
+    "selected": "fg:green bold",
+})
+
+programming_language = questionary.select(
+    "Choose a Programming Language:",
+    choices=[
+        "python",
+        "node",
+        "java",
+        "cpp",
+        "c++",
+        "go",
+        "rust",
+        "android",
+        "ruby",
+    ],
+    use_shortcuts=True,
+    style=style
+).ask()
+
 
 
 print(f"Repository Name: {name}")

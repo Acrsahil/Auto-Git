@@ -1,1 +1,1 @@
-cd /home/hitler/Auto-Git/whoamiiiissss
+cd /home/hitler/Auto-Git/nischalmakaissssssssssssssss

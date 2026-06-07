@@ -19,7 +19,7 @@ def github_device_login():
         "https://github.com/login/device/code",
         data={
             "client_id": CLIENT_ID,
-            "scope": "repo",
+            "scope": "repo delete_repo",
         },
         headers={"Accept": "application/json"},
     )
