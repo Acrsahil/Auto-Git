@@ -2,7 +2,8 @@ from github import GitignoreTemplate
 import main
 import requests
 import questionary
-from InquirerPy import inquirer
+from prompt_toolkit.styles import Style
+
 
 
 
@@ -44,8 +45,6 @@ if len(main.sys.argv) < 2:
 # Get the repository name from the command-line arguments
 name = main.sys.argv[1]
 
-import questionary
-from prompt_toolkit.styles import Style
 
 
 style = Style.from_dict({
@@ -58,6 +57,7 @@ style = Style.from_dict({
 programming_language = questionary.select(
     "Choose a Programming Language:",
     choices=[
+        "none",
         "python",
         "node",
         "java",
@@ -71,6 +71,21 @@ programming_language = questionary.select(
     use_shortcuts=True,
     style=style
 ).ask()
+
+
+# this below option uses fzf 
+# import subprocess
+#
+# items = ["python", "node", "java", "cpp", "go", "rust"]
+#
+# result = subprocess.run(
+#     ["fzf", "--height", "40%", "--border"],
+#     input="\n".join(items),
+#     text=True,
+#     capture_output=True,
+# )
+#
+# print(result.stdout.strip())
 
 
 

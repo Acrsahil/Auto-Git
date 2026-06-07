@@ -1,1 +1,1 @@
-cd /home/hitler/Auto-Git/nischalmakaissssssssssssssss
+cd /home/hitler/noneoption
