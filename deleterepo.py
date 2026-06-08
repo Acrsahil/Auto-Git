@@ -28,8 +28,10 @@ dir_path = content
 
 def delete_local_file(file_name,dir_path):
     for file in Path(dir_path).iterdir():
-        if file.is_file() and file.name == file_name:
-            file.unlink()
+        if file.is_dir() and file.name == file_name:
+            deleted_file_name = file.name
+            file.rmdir()
+            print(delete_local_file, "/ is deleted sucessfully!")
 
 
 
@@ -41,6 +43,7 @@ def delete_local_file(file_name,dir_path):
 
     
 
+delete_local_file("broishero",dir_path)
 
 
 
