@@ -16,9 +16,12 @@ for repo_name in lsts:
     try:
         # Get the repository
         repo = userdata.g.get_user().get_repo(repo_name)
+        confirm = input(f"Delete '{repo_name}'? [y/N]:")
+        if confirm.lower() == 'y' or confirm.lower == "yes":
         # Delete the repository
-        repo.delete()
-        print(f"The repository '{repo_name}' was deleted successfully!")
+            repo.delete()
+            print(f"The repository '{repo_name}' was deleted successfully!")
+
     except GithubException as e:
         if e.status == 404:
             print(f"Error: The repository '{repo_name}' was not found.")

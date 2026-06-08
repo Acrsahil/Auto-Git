@@ -7,6 +7,7 @@ from github.Auth import Token
 
 CLIENT_ID = "Ov23liTyWpzNLaARqSsG"
 TOKEN_FILE = os.path.expanduser("~/.gmkdir_token")
+maindir = os.path.dirname(os.path.abspath(__file__))
 
 
 # -----------------------------
@@ -17,7 +18,7 @@ def github_device_login():
         "https://github.com/login/device/code",
         data={
             "client_id": CLIENT_ID,
-            "scope": "repo",
+            "scope": "repo delete_repo",
         },
         headers={"Accept": "application/json"},
     )

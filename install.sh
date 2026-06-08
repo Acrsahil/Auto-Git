@@ -97,7 +97,7 @@ setup_virtualenv() {
     source "$VENV_DIR/bin/activate"
     if ! pip show PyGithub &>/dev/null; then
         pip install --upgrade pip
-        pip install PyGithub
+        pip install -r requirements.txt
         echo "✅ PyGithub installed."
     else
         echo "PyGithub is already installed."

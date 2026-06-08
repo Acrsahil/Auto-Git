@@ -1,1 +1,1 @@
-cd /home/hitler/AutoGitTest
+cd /home/hitler/noneoption
