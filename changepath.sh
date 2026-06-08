@@ -1,1 +1,1 @@
-cd /mnt/c/Users/Admin/Desktop/hello_code_test
+cd /home/hitler/broishero
