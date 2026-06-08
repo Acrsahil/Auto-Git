@@ -1,1 +1,1 @@
-cd /home/hitler/noneoption
+cd /mnt/c/Users/Admin/Desktop/hello_code_test
