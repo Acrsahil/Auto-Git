@@ -1,1 +1,1 @@
-cd /home/hitler/broishero
+cd /mnt/c/Users/Admin/Desktop/bottlekopython
