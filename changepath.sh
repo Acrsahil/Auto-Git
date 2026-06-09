@@ -1,1 +1,1 @@
-cd /mnt/c/Users/Admin/Desktop/bottlekopython
+cd /home/hitler/Documents/Auto-Git/threadtest
