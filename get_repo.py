@@ -8,7 +8,7 @@ import threading
 userdata = main.user_cread()
 
 # -----------------------------
-# CACHE CONFIG
+# CONFIG
 # -----------------------------
 CACHE_FILE = os.path.expanduser("~/.gh_repo_cache.json")
 CACHE_TTL = 60 * 60  # 1 hour
@@ -26,7 +26,7 @@ countrepolen = " Listing repos of  "
 warninglen = " Warning!: Repository not found! "
 
 # -----------------------------
-# GITHUB USER (reuse once)
+# USER
 # -----------------------------
 user = userdata.g.get_user()
 
@@ -46,33 +46,25 @@ def save_cache(data):
 def is_stale(cache):
     return not cache or (time.time() - cache["timestamp"] > CACHE_TTL)
 
-def repo_changed(cache, current_repos):
-    if not cache:
-        return True
-    return set(cache.get("repos", [])) != set(current_repos)
-
 # -----------------------------
-# FAST FETCH (light API call)
+# FAST FETCH (ONLY WHEN NEEDED)
 # -----------------------------
 def fetch_repo_names():
     return [repo.name for repo in user.get_repos()]
+
+def fetch_repo_objects():
+    return list(user.get_repos())
 
 # -----------------------------
 # BACKGROUND REFRESH
 # -----------------------------
 def refresh_cache():
     try:
-        # print("\n🔄 Background sync started...")
-
         repos = fetch_repo_names()
-
         save_cache({
             "timestamp": time.time(),
             "repos": repos
         })
-
-        print("✔ Cache updated in background\n")
-
     except Exception as e:
         print(f"⚠ Background refresh failed: {e}")
 
@@ -82,31 +74,26 @@ def start_background_refresh():
     thread.start()
 
 # -----------------------------
-# GET REPOS (STABLE + SWR MODEL)
+# GET REPOS (CACHE FIRST, NO EXTRA API CALLS HERE)
 # -----------------------------
 def get_repos():
     cache = load_cache()
 
-    # 1. If cache exists → return immediately (FAST PATH)
-    if cache:
-        repos = cache["repos"]
-
-        # 2. check if refresh needed
-        if is_stale(cache):
-            start_background_refresh()
-        else:
-            # optional change detection (cheap API call avoided here)
-            start_background_refresh()
-
+    # 1. No cache → fetch once
+    if not cache:
+        repos = fetch_repo_names()
+        save_cache({
+            "timestamp": time.time(),
+            "repos": repos
+        })
         return repos
 
-    # 3. first run → must fetch
-    repos = fetch_repo_names()
+    # 2. Return cached data immediately (FAST)
+    repos = cache["repos"]
 
-    save_cache({
-        "timestamp": time.time(),
-        "repos": repos
-    })
+    # 3. Only trigger refresh in background (NO blocking API call here)
+    if is_stale(cache):
+        start_background_refresh()
 
     return repos
 
@@ -134,10 +121,15 @@ def ls_repos():
         print(f"{YELLOW}Error: Unable to list repositories - {e}{RESET}")
 
 # -----------------------------
-# LIST INSIDE REPO (OPTIMIZED)
+# LIST INSIDE REPO (NO EXTRA USER.get_repos CALL)
 # -----------------------------
 def ls_inside_repo(lsts):
-    repo_map = {r.name: r for r in user.get_repos()}
+    try:
+        repo_objects = fetch_repo_objects()
+        repo_map = {r.name: r for r in repo_objects}
+    except Exception as e:
+        print(f"{YELLOW}Error loading repos: {e}{RESET}")
+        return
 
     for con in lsts:
         filecnt = 0
@@ -177,13 +169,9 @@ def ls_inside_repo(lsts):
 
         except UnknownObjectException:
             print(f"\n{YELLOW} Warning!: Repository '{con}' not found! {RESET}")
-            print(f"{YELLOW}*{'-' * (len(warninglen) + len(con) + 1)}*{RESET}")
 
         except GithubException as e:
-            if e.status == 404 and "empty" in str(e.data).lower():
-                print(f"\n{YELLOW} Warning!: Repository '{con}' is empty!{RESET}")
-            else:
-                print(f"\n{YELLOW} GitHub error on '{con}' - {e}{RESET}")
+            print(f"\n{YELLOW} GitHub error on '{con}' - {e}{RESET}")
 
         except Exception as e:
             print(f"\n{YELLOW} Unexpected error for '{con}' - {e}{RESET}")
