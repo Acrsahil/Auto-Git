@@ -2,29 +2,68 @@
 
 set -e
 
+# ============================
+# Message Helpers
+# ============================
+info() {
+    echo "ℹ️  $1"
+}
+
+success() {
+    echo "✅ $1"
+}
+
+warn() {
+    echo "⚠️  $1"
+}
+
+error() {
+    echo "❌ $1"
+}
+
+echo
+echo "======================================"
+echo "        Auto-Git Installer"
+echo "======================================"
+echo
+
+# ============================
+# Paths
+# ============================
 CURRENT_PATH=$(dirname "$(realpath "$0")")
 VENV_DIR="$CURRENT_PATH/myenv"
 PYTHON="$VENV_DIR/bin/python"
 
 ALIAS_FILE="$CURRENT_PATH/alias.sh"
-SHELL_CONFIG_FILES=("$HOME/.bashrc" "$HOME/.zshrc" "$HOME/.config/fish/config.fish")
+
+SHELL_CONFIG_FILES=(
+    "$HOME/.bashrc"
+    "$HOME/.zshrc"
+    "$HOME/.config/fish/config.fish"
+)
 
 MAN_DIR="$(manpath 2>/dev/null | awk -F: '{print $1}')/man1"
+
 GPUSH_MAN="$CURRENT_PATH/man/gpush.1"
 GMKDIR_MAN="$CURRENT_PATH/man/gmkdir.1"
 GRMDIR_MAN="$CURRENT_PATH/man/grmdir.1"
 GLS_MAN="$CURRENT_PATH/man/gls.1"
 
+# ============================
+# Utils
+# ============================
 command_exists() {
     command -v "$1" &>/dev/null
 }
 
-# ----------------------------
-# Python installation check
-# ----------------------------
+# ============================
+# Python setup
+# ============================
 install_python_if_needed() {
+    info "Checking Python installation..."
+
     if ! command_exists python3; then
-        echo "Python not found. Installing..."
+        warn "Python not found. Installing..."
 
         if command_exists apt-get; then
             sudo apt-get update
@@ -32,32 +71,44 @@ install_python_if_needed() {
         elif command_exists pacman; then
             sudo pacman -S --noconfirm python python-pip python-virtualenv
         else
-            echo "❌ Unsupported package manager"
+            error "Unsupported package manager"
             exit 1
         fi
+
+        success "Python installed"
+    else
+        success "Python already installed"
     fi
 }
 
-# ----------------------------
-# Virtual environment setup
-# ----------------------------
+# ============================
+# Virtual environment
+# ============================
 setup_virtualenv() {
+    info "Setting up virtual environment..."
+
     if [ ! -d "$VENV_DIR" ]; then
-        echo "Creating venv..."
         python3 -m venv "$VENV_DIR"
+        success "Virtual environment created"
+    else
+        success "Virtual environment already exists"
     fi
 
-    echo "Upgrading pip..."
+    info "Upgrading pip..."
     "$PYTHON" -m pip install --upgrade pip
+    success "pip upgraded"
 
-    echo "Installing dependencies..."
+    info "Installing dependencies..."
     "$PYTHON" -m pip install -r "$CURRENT_PATH/requirements.txt"
+    success "Dependencies installed"
 }
 
-# ----------------------------
-# Key setup
-# ----------------------------
+# ============================
+# GitHub token setup
+# ============================
 setup_key_file() {
+    info "Setting up GitHub token storage..."
+
     local secure_dir="$CURRENT_PATH/.secure_keys"
     local key_file="$secure_dir/mykey.txt"
 
@@ -65,20 +116,25 @@ setup_key_file() {
     chmod 700 "$secure_dir"
 
     if [ ! -f "$key_file" ]; then
+        warn "GitHub token not found"
         echo "Paste your GitHub token:"
         read user_key
 
         echo "$user_key" > "$key_file"
         chmod 600 "$key_file"
 
-        echo "Token saved."
+        success "GitHub token saved securely"
+    else
+        success "GitHub token already exists"
     fi
 }
 
-# ----------------------------
-# Alias generation (FIXED)
-# ----------------------------
+# ============================
+# Aliases (NO activation)
+# ============================
 add_dynamic_aliases() {
+    info "Generating command aliases..."
+
     local base="$CURRENT_PATH"
 
     cat > "$ALIAS_FILE" <<EOF
@@ -93,8 +149,7 @@ gmkdir() {
 }
 
 grmdir() {
-    pwd | $PYTHON $base/getpath.py
-    $PYTHON $base/deleterepo.py "\$@"
+    pwd | $PYTHON $base/deleterepo.py "\$@"
 }
 
 gls() {
@@ -107,40 +162,52 @@ gpush() {
 EOF
 
     chmod +x "$ALIAS_FILE"
+
+    success "Aliases created"
 }
 
-# ----------------------------
+# ============================
 # Man pages
-# ----------------------------
+# ============================
 setup_man_directory() {
+    info "Setting up man directory..."
     sudo mkdir -p "$MAN_DIR"
 }
 
 install_man_page() {
+    info "Installing man pages..."
+
     for file in "$GPUSH_MAN" "$GMKDIR_MAN" "$GRMDIR_MAN" "$GLS_MAN"; do
         name=$(basename "$file")
+
         if [ -f "$file" ] && [ ! -f "$MAN_DIR/$name" ]; then
             sudo cp "$file" "$MAN_DIR"
+            success "$name installed"
+        else
+            info "$name already exists"
         fi
     done
 
     sudo mandb >/dev/null 2>&1 || true
 }
 
-# ----------------------------
-# Shell config
-# ----------------------------
+# ============================
+# Shell integration
+# ============================
 add_source_to_shell_configs() {
+    info "Configuring shell integration..."
+
     for cfg in "${SHELL_CONFIG_FILES[@]}"; do
         if [ -f "$cfg" ] && ! grep -q "alias.sh" "$cfg"; then
             echo "source $ALIAS_FILE" >> "$cfg"
+            success "Updated $(basename "$cfg")"
         fi
     done
 }
 
-# ----------------------------
+# ============================
 # MAIN
-# ----------------------------
+# ============================
 main() {
     install_python_if_needed
     setup_virtualenv
@@ -150,7 +217,12 @@ main() {
     install_man_page
     add_source_to_shell_configs
 
-    echo "✅ Installation complete!"
+    echo
+    success "Installation complete!"
+    echo
+    info "Run this to activate commands:"
+    echo "source $ALIAS_FILE"
+    echo
 }
 
 main
