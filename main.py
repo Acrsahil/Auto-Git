@@ -6,7 +6,7 @@ import sys
 from github import Github
 from github.Auth import Token
 
-CLIENT_ID = "Ov23liTyWpzNLaARqSsG"
+CLIENT_ID = "Ov23lieCNiZfxauy62Nh"
 TOKEN_FILE = os.path.expanduser("~/.gmkdir_token")
 maindir = os.path.dirname(os.path.abspath(__file__))
 

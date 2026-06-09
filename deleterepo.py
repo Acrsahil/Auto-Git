@@ -1,6 +1,5 @@
 from github.GithubException import GithubException
 from pathlib import Path
-import os
 import shutil
 
 
@@ -28,11 +27,17 @@ with open(f"{parent_dir}/path.txt","r") as f:
 dir_path = content
 
 def delete_local_file(dir_name,dir_path):
+    found = False
     for dir in Path(dir_path).iterdir():
         if dir.is_dir() and dir.name == dir_name and dir.exists():
+            found = True
             deleted_dir_name = dir.name
             shutil.rmtree(dir)
             print(f"{deleted_dir_name}/ is deleted sucessfully!")
+    if not found:
+        print(f"{dir_name}/ directory not found!")
+
+
 
 
 
@@ -44,14 +49,12 @@ def delete_local_file(dir_name,dir_path):
 
     
 
-# delete_local_file("broishero",dir_path)
 
 
 
 
 
 # # Attempt to delete the specified repositories
-
 for repo_name in lsts:
     try:
         # Get the repository
