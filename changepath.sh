@@ -1,1 +1,1 @@
-cd /home/hitler/noneoption
+cd /home/hitler/Documents/Auto-Git/threadtest

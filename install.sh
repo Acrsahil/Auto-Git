@@ -153,7 +153,7 @@ add_dynamic_aliases() {
     local aliases=(
         "alias rudo='source $base_path/changepath.sh'"
         "alias gmkdir='function _gmkdir() { source $base_path/myenv/bin/activate && pwd | python $base_path/getpath.py && python $base_path/gmkdir.py \"\$@\" && source $base_path/changepath.sh && deactivate; }; _gmkdir'"
-        "alias grmdir='function _grmdir() { source $base_path/myenv/bin/activate && python $base_path/deleterepo.py \"\$@\" && deactivate; }; _grmdir'"
+        "alias grmdir='function _grmdir() { source $base_path/myenv/bin/activate && pwd | python $base_path/getpath.py && python $base_path/deleterepo.py \"\$@\" && deactivate; }; _grmdir'"
         "alias gls='function _gls() { source $base_path/myenv/bin/activate && python $base_path/get_repo.py \"\$@\" && deactivate; }; _gls'"
         "alias gpush='bash $base_path/gpush.sh'"
     )
