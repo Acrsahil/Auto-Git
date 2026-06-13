@@ -2,7 +2,6 @@ import time
 import webbrowser
 import requests
 import os
-import sys
 from github import Github
 from github.Auth import Token
 
