@@ -1,1 +1,1 @@
-cd /home/hitler/broareyoudump
+cd /home/hitler/Documents/Auto-Git/threadtest
