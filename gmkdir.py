@@ -154,8 +154,9 @@ with open(f"{path}/README.md", "w") as file:
 
 # Initialize the git repository locally and set up the remote
 repo_url = f"https://github.com/{user.login}/{name}.git"
+repo_remote_url = f"git@github.com:{user.login}/{name}.git"
 main.os.system(
-    f"cd {path} && git init && git remote add origin {repo_url} && git branch -M main"
+    f"cd {path} && git init && git remote add origin {repo_remote_url} && git branch -M main"
 )
 with open(f"{maindir}/changepath.sh", "w") as file:
     file.write(f"cd {path}")
