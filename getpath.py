@@ -1,5 +1,6 @@
-path = ""
 import os
+
+path = ""
 
 
 def getpath():

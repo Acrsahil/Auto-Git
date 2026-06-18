@@ -1,7 +1,10 @@
+import logging
 import os
 import sys
 
 from github import Auth, Github
+
+logging.basicConfig(level=logging.ERROR, format="%(levelname)s: %(message)s")
 
 reponaming = " Listing contents of   "
 countrepolen = " Listing repos of  "
@@ -41,7 +44,8 @@ repo_full_name = f"{user.login}/{repo_name}"
 # Now get that repo
 try:
     repo = g.get_repo(repo_full_name)
-except:
+except Exception as err:
+    logging.error("Repository not found: %s", repo_full_name)
     print(f"{YELLOW}{warninglen} '{repo_full_name}'{RESET}")
     sys.exit(1)
 
